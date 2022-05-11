@@ -1,12 +1,12 @@
 # LiterateAstroids
 
 # Overview
-=======
-This game is to help with the learning process of typing better and make it fun by integrating it with the game of astroids. 
-=======
-Are you smarter than an astroid? These astroids all know their favorite words and will challenge you to see if you know them. Can you survive this assault of letters?
 
-This program is designed to help its players learn to use a keyboard by challenging them to find keys and spell words under threat of oncoming astroids
+ -This game is to help with the learning process of typing better and make it fun by integrating it with the game of astroids. 
+ 
+ -Are you smarter than an astroid? These astroids all know their favorite words and will challenge you to see if you know them. Can you survive this assault of letters?
+
+ -This program is designed to help its players learn to use a keyboard by challenging them to find keys and spell words under threat of oncoming astroids
 
 
 [Software Demo Video](http://youtube.link.goes.here)
