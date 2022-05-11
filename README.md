@@ -2,6 +2,10 @@
 
 # Overview
 
+Are you smarter than an astroid? These astroids all know their favorite words and will challenge you to see if you know them. Can you survive this assault of letters?
+
+This program is designed to help its players learn to use a keyboard by challenging them to find keys and spell words under threat of oncoming astroids
+
 {Important!  Do not say in this section that this is college assignment.}
 
 {Provide a description of your team project.  Describe how to use the software.}
