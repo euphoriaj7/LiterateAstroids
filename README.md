@@ -1,6 +1,7 @@
 # LiterateAstroids
 
 # Overview
+=======
 This game is to help with the learning process of typing better and make it fun by integrating it with the game of astroids. 
 =======
 Are you smarter than an astroid? These astroids all know their favorite words and will challenge you to see if you know them. Can you survive this assault of letters?
