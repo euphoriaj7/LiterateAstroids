@@ -1,4 +1,4 @@
 import arcade
 
-class Actor(arcade.sprite):
-    pass
+#class Actor(arcade.sprite):
+#    pass
