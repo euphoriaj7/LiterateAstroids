@@ -4,3 +4,6 @@ class Actor(arcade.sprite):
     pass
 
 #Bekah & Anna 
+#class Actor(arcade.sprite):
+#    pass
+
