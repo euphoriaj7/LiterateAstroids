@@ -4,7 +4,7 @@
 from game.actor import Actor
 from game.physics import Physics
 
-class Asteriod(Actor):
+class Astroid(Actor):
 
     def __init__(self):
         super().__init__()

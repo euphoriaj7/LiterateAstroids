@@ -3,7 +3,7 @@
 
 from game.actor import Actor
 
-class ship(Actor):
+class Ship(Actor):
 
 
     def __init__(): 

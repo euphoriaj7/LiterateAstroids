@@ -3,6 +3,6 @@
 
 from game.actor import Actor
 
-class laser(Actor):
+class Laser(Actor):
 
     x = 3
