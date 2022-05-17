@@ -4,6 +4,7 @@ from game.constants import (
     SCREEN_HEIGHT,
 )
 from game.astroid import Astroid
+from game.ship import Ship
 
 class Director(arcade.View):
 
@@ -11,11 +12,11 @@ class Director(arcade.View):
         super().__init__()
 
     def setup(self):
-        self.background = arcade.load_texture('game\images\stars.png')
+        self.background = arcade.load_texture('game/images/stars.png')
         #self.forebackground = arcade.load_texture('game\images\shipshell.png')
         self.spritelist = arcade.sprite_list() # creates a sprite list under name spritelist
-        self.astroid = Astroid()
-        self.spritelist.append(self.astroid) # adds actor(all sprites) to sprite list
+        self.ship = Ship()
+        self.spritelist.append(self.ship) # adds actor(all sprites) to sprite list
     
     def on_draw(self):
         arcade.start_render()
