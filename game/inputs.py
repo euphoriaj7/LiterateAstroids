@@ -1,6 +1,6 @@
 import arcade
 
-class inputs():
+class Inputs():
     
     def __init__(self):
         pass
