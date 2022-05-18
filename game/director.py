@@ -22,9 +22,9 @@ class Director(arcade.View):
     
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.forebackground)
+        #arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.forebackground)
         self.spritelist.draw() # adds all actors to screen
-        #arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
+        arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
         #place score and word box
     
     #def on_update(self):
