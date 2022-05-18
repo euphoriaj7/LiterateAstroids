@@ -1,13 +1,12 @@
 # fucnitons 
 # - score/points
 from game.actor import Actor
-from game import constants
+from game.physics import Physics
 
 class Ship(Actor):
-
-    def __init__(self):
+    def __init__(self): 
         super().__init__()
-        self.texture = constants.SHIP_IDLE
-        self.center_x = constants.CENTER_X
-        self.center_y = constants.CENTER_Y
+        self.set_image("images\spaceship.png")
+        self.set_position(640, 360)
+
 
