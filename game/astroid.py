@@ -15,16 +15,19 @@ class Astroid(arcade.Sprite):
         super().__init__("game/images/spaceship.png", SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 3
         self.center_y = SCREEN_HEIGHT / 3
-        data = None
-        data = Data() 
-        letter_asteroid = data.random_word()
-        print(letter_asteroid)
+        self.text = ""
+        # data = Data() 
+        # letter_asteroid = data.random_word()
+        # print(letter_asteroid)
+        self.getLetter(self)
 
 # to get letter to print in terminal
     def getLetter(self):
         data = Data() 
         letter_asteroid = data.random_word()
+        self.text = letter_asteroid
         print(letter_asteroid)
+        
         
 
 
