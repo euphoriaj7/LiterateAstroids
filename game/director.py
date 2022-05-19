@@ -32,7 +32,7 @@ class Director(arcade.View):
         #place score and word box
     
     #def on_update(self):
-        #self.spritelist.update() # updates all actor sprites
+        #self.spritelist.update() # updates all sprites
         #call check collisions
         #update health & score
     

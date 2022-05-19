@@ -16,10 +16,8 @@ class Astroid(arcade.Sprite):
         self.center_x = SCREEN_WIDTH / 3
         self.center_y = SCREEN_HEIGHT / 3
         self.text = ""
-        # data = Data() 
-        # letter_asteroid = data.random_word()
-        # print(letter_asteroid)
-        self.getLetter(self)
+        self.getLetter()
+        
 
 # to get letter to print in terminal
     def getLetter(self):
@@ -27,6 +25,17 @@ class Astroid(arcade.Sprite):
         letter_asteroid = data.random_word()
         self.text = letter_asteroid
         print(letter_asteroid)
+        
+    def update(self):
+        print("Fishsticks")
+        '''arcade.draw_text(
+            "fish sticks",
+            SCREEN_WIDTH / 4,
+            SCREEN_HEIGHT / 4,
+            arcade.csscolor.AQUA,
+            40,
+            )'''
+        
         
         
 
