@@ -12,13 +12,17 @@ class Director(arcade.View):
         super().__init__()
         self.spritelist = None
         self.ship = None
+        self.astroid = None
 
     def setup(self):
         self.background = arcade.load_texture('game/images/stars.png')
         #self.foreground = arcade.load_texture('game\images\shipshell.png')
         self.spritelist = arcade.SpriteList() # creates a sprite list under name spritelist
         self.ship = Ship()
+        self.astroid = Astroid()
+
         self.spritelist.append(self.ship) # adds actor(all sprites) to sprite list
+        self.spritelist.append(self.astroid)
     
     def on_draw(self):
         arcade.start_render()
@@ -28,7 +32,7 @@ class Director(arcade.View):
         #place score and word box
     
     #def on_update(self):
-        #self.spritelist.update() # updates all actor sprites
+        #self.spritelist.update() # updates all sprites
         #call check collisions
         #update health & score
     
