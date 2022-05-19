@@ -12,12 +12,15 @@ class Director(arcade.View):
         super().__init__()
         self.spritelist = None
         self.ship = None
+        self.astroid = None
 
     def setup(self):
         self.background = arcade.load_texture('game/images/stars.png')
         #self.foreground = arcade.load_texture('game\images\shipshell.png')
         self.spritelist = arcade.SpriteList() # creates a sprite list under name spritelist
         self.ship = Ship()
+        
+
         self.spritelist.append(self.ship) # adds actor(all sprites) to sprite list
     
     def on_draw(self):

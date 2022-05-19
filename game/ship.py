@@ -11,7 +11,7 @@ from game.constants import (
 
 class Ship(arcade.Sprite):
     def __init__(self): 
-        super().__init__("game\images\spaceship.png", SHIP_SCALE)
+        super().__init__("game/images/spaceship.png", SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 2
         self.center_y = SCREEN_HEIGHT / 2
         #self.set_image("images\spaceship.png")
