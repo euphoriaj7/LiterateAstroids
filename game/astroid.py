@@ -27,13 +27,13 @@ class Astroid(arcade.Sprite):
         print(letter_asteroid)
         
     def draw(self):
-        print("Fishsticks")
+        print("Draw astroid")
         arcade.draw_text(
             "fish sticks",
             SCREEN_WIDTH / 4,
             SCREEN_HEIGHT / 4,
-            arcade.csscolor.AQUA,
-            40,
+            arcade.csscolor.RED,
+            25
             )
         
     def update(self):
