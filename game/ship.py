@@ -18,6 +18,6 @@ class Ship(arcade.Sprite):
         #self.set_position(640, 360)
 
     def update(self):
-        pass
+        """"""
 
 
