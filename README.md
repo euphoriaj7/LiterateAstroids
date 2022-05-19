@@ -13,9 +13,10 @@
 
 # Development Environment
 
- - written in python with the IDE of Visual Studio Code
+ - Python
+ - Visual Studio Code
  - Modules/Libraries used: 
-    -arcade
+    arcade
 
 # Collaborators
 
@@ -37,6 +38,7 @@ Morale Officer - Bekah Bentley
 
 * W3 Schools - Python Tutorial https://www.w3schools.com/python/
 * Visual Studio Code https://code.visualstudio.com/
+* Python Arcade https://api.arcade.academy/en/latest/get_started.html#
 
 # Future Work
 
