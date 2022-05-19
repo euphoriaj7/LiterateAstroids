@@ -21,6 +21,6 @@ class Ship(arcade.Sprite):
         pass
 
     def update(self):
-        pass
+        """"""
 
 
