@@ -1,19 +1,29 @@
 # functions 
 # - words and get/setter
-
+from game.constants import (
+    SHIP_SCALE,
+    SCREEN_HEIGHT,
+    SCREEN_WIDTH
+)
 from game.actor import Actor
 from game.physics import Physics
 from game.data import Data
+import arcade
 
-class Astroid(Actor):
-
-    def __init__(self):
-        words = None
+class Astroid(arcade.Sprite):
+    def __init__(self): 
+        super().__init__("game/images/spaceship.png", SHIP_SCALE)
+        self.center_x = SCREEN_WIDTH / 3
+        self.center_y = SCREEN_HEIGHT / 3
+        data = None
+        data = Data() 
+        letter_asteroid = data.random_word()
+        print(letter_asteroid)
 
 # to get letter to print in terminal
     def getLetter(self):
-        words = Data() 
-        letter_asteroid = words.random_word()
+        data = Data() 
+        letter_asteroid = data.random_word()
         print(letter_asteroid)
         
 
