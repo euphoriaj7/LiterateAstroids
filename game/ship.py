@@ -16,6 +16,9 @@ class Ship(arcade.Sprite):
         self.center_y = SCREEN_HEIGHT / 2
         #self.set_image("images\spaceship.png")
         #self.set_position(640, 360)
+    
+    def draw(self):
+        pass
 
     def update(self):
         pass
