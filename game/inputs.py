@@ -35,5 +35,3 @@ class Inputs():
         
         elif arcade.key.ENTER: return True
         else: return False
-
-#Jeff
