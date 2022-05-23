@@ -13,10 +13,11 @@ class Director(arcade.View):
         self.spritelist = None
         self.ship = None
         self.astroid = None
+        self.input = None
 
     def setup(self):
         self.background = arcade.load_texture('game/images/stars.png')
-        self.foreground = arcade.load_texture('game\images\shipshell.png')
+        self.foreground = arcade.load_texture('game/images/shipshell.png')
         self.spritelist = arcade.SpriteList() # creates a sprite list under name spritelist
         self.ship = Ship()
         self.astroid = Astroid()
@@ -31,8 +32,8 @@ class Director(arcade.View):
         arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.foreground)
         #place score and word box
     
-    #def on_update(self):
-        #self.spritelist.update() # updates all sprites
+    def on_update(self):
+        self.spritelist.update() # updates all sprites
         #call check collisions
         #update health & score
     

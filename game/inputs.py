@@ -3,10 +3,15 @@ import arcade
 class Inputs():
     
     def __init__(self):
+        self.word_list = None
+        self.active_word = None
+        self.input = ""
+
+    def check_word(self):
         pass
 
     def on_key_pressed(self, input):
-        if arcade.key.A: input = input + 'a'
+        if arcade.key.A: self.input = self.input + 'a'
         if arcade.key.B: input = input + 'b'
         if arcade.key.C: input = input + 'c'
         if arcade.key.D: input = input + 'd'
