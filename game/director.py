@@ -1,5 +1,6 @@
 #from LiterateAstroids.game.constants import CENTER_X, CENTER_Y
 from ast import In
+from distutils.spawn import spawn
 import arcade
 import math
 import random
@@ -67,14 +68,15 @@ class Director(arcade.View):
     def spawn_asteroid(self, speed):
         # Randomly select the side the spawing will happen
         side = random.randint(1,2)
+        spawn_radius = math.sqrt(CENTER_X**2 + CENTER_Y**2) + 30
 
         # Set a random spawn angle based on the side selected
         if (side == 1): theta = random.uniform(math.atan2(-SCREEN_WIDTH,-SCREEN_HEIGHT), math.atan2(-SCREEN_WIDTH,SCREEN_HEIGHT))
         else:           theta = random.uniform(math.atan2(SCREEN_WIDTH,-SCREEN_HEIGHT), math.atan2(SCREEN_WIDTH,SCREEN_HEIGHT))
 
         # Set the spawn coordinates based on the spawn angle
-        x = CENTER_X - (CENTER_X * math.sin(theta))
-        y = CENTER_Y + (100 + CENTER_X) * math.cos(theta)
+        x = CENTER_X - (spawn_radius * math.sin(theta))
+        y = CENTER_Y + spawn_radius * math.cos(theta)
 
         # Set the velocity vector based on the spawn angle + 180 degrees
         deltaX = speed * math.cos(theta - (math.pi/2))
