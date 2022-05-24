@@ -44,13 +44,13 @@ class Inputs():
         
         # If enter, check vs active_word
         # Clear input and return true if they match
-        elif symbol == arcade.key.ENTER:
+        if symbol == arcade.key.ENTER:
             if (self.active_word == self.input):
                 self.input = ""
                 print (self.input)  # TESTING LINE
                 return True
         # On backspace, delete the last character from input
-        elif symbol == arcade.key.BACKSPACE: self.input = self.input[:-1]
+        if symbol == arcade.key.BACKSPACE: self.input = self.input[:-1]
 
         print (self.input)  # TESTING LINE
         return False
