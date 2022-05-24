@@ -26,8 +26,8 @@ class Director(arcade.View):
         self.inputs = None
 
     def setup(self):
-        self.background = arcade.load_texture(WORKING_DIRECTORY+"\LiterateAstroids\game\images\stars.png")
-        self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\LiterateAstroids\game\images\shipshell.png")
+        self.background = arcade.load_texture(WORKING_DIRECTORY+"\game\images\stars.png")
+        self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshell.png")
         self.spritelist = arcade.SpriteList() # creates a sprite list under name spritelist
         self.ship = Ship()
         # TESTING SPAWN ASTEROID CODE

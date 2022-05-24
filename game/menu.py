@@ -8,7 +8,7 @@ class MenuView(arcade.View):
 
     def on_show(self):
         arcade.set_background_color(arcade.color.BEIGE)
-        self.background = arcade.load_texture(WORKING_DIRECTORY+"\LiterateAstroids\game\images\classmenu.png")
+        self.background = arcade.load_texture(WORKING_DIRECTORY+"\game\images\classmenu.png")
 
     def on_draw(self):
         arcade.start_render()
