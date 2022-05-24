@@ -1,4 +1,5 @@
 #from LiterateAstroids.game.constants import CENTER_X, CENTER_Y
+from ast import In
 import arcade
 import math
 import random
@@ -11,6 +12,7 @@ from game.constants import (
 )
 from game.astroid import Astroid
 from game.ship import Ship
+from game.inputs import Inputs
 
 class Director(arcade.View):
 
@@ -19,7 +21,7 @@ class Director(arcade.View):
         self.spritelist = None
         self.ship = None
         self.astroid = None
-        self.input = None
+        self.inputs = None
 
     def setup(self):
         self.background = arcade.load_texture('game/images/stars.png')
@@ -31,6 +33,9 @@ class Director(arcade.View):
 
         self.spritelist.append(self.ship) # adds actor(all sprites) to sprite list
         self.spritelist.append(self.astroid)
+
+        # TESTING INPUT CODE
+        self.inputs = Inputs()
     
     def on_draw(self):
         arcade.start_render()
@@ -41,6 +46,10 @@ class Director(arcade.View):
         # Updates graphics for all actors // THIS IS ADDED IN AS A FIX TO self.spritelist.draw()
         for sprite in self.spritelist: sprite.draw()
         #place score and word box
+
+    # Check for key press and call the inputs object
+    def on_key_press(self, symbol, modifer):
+        self.inputs.pressed(symbol, modifer)
     
     def on_update(self, delta_time):
         self.spritelist.update() # updates all sprites
