@@ -71,5 +71,10 @@ class Director(arcade.View):
 
         # Return a new asteroid object
         return Astroid(x, y, deltaX, deltaY)
+
+    # \\\ SPAWN LASER ///
+    # Spawns a laser from the direction the ship is currently pointing
+    def spawn_laser(self, rotation):
+        pass
     
 #MOrgan 
