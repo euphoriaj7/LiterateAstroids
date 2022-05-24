@@ -26,8 +26,6 @@ class Director(arcade.View):
         self.foreground = arcade.load_texture('game/images/shipshell.png')
         self.spritelist = arcade.SpriteList() # creates a sprite list under name spritelist
         self.ship = Ship()
-        #self.astroid = Astroid(0, 0, 0 ,0)
-        
         # TESTING SPAWN ASTEROID CODE
         self.astroid = self.spawn_asteroid(2)
 
@@ -48,6 +46,9 @@ class Director(arcade.View):
         self.spritelist.update() # updates all sprites
         #call check collisions
         #update health & score
+
+        # COMMENT THIS IN FOR A BENCHMARK
+        # self.spritelist.append(self.spawn_asteroid(2))
 
     # \\\ SPAWN ASTEROID ///
     # Gets a random angle and spawns the asteroid at that angle and sets its veclocity towards
