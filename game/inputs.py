@@ -1,11 +1,50 @@
+from game.data import Data
+from game.constants import (
+    SCREEN_WIDTH,
+    SCREEN_HEIGHT,
+    SHIP_SCALE,
+    CENTER_X,
+    CENTER_Y,
+)
+
 import arcade
 
-class Inputs():
+class Inputs(arcade.Sprite):
     
     def __init__(self):
+        super().__init__("game/images/spaceship.png", SHIP_SCALE)
+        self.center_x = SCREEN_WIDTH / 2
+        self.center_y = SCREEN_HEIGHT / 2
         self.word_list = None
-        self.active_word = "test"
+        self.data = Data()
+        self.active_word = ""
         self.input = ""
+        self.getWord()
+
+    def getWord(self): 
+        self.active_word = self.data.random_word()
+        self.active_word = self.active_word[:-1]
+
+    # \\\ DRAW ///
+    # Displays the current status of the input string on the screen
+    # Displays the active word to match TEST CODE
+    def draw(self):
+        # Display input string
+        arcade.draw_text(
+            self.input,
+            CENTER_X - 200,
+            CENTER_Y - 300,
+            arcade.color.RED,
+            25
+            )
+        # Display active word
+        arcade.draw_text(
+            self.active_word,
+            CENTER_X + 320,
+            CENTER_Y - 335,
+            arcade.color.RED,
+            25
+            )
 
     # \\\ PRESSED ///
     # Checks for keyboard input and appends that character to the input string.
@@ -77,14 +116,11 @@ class Inputs():
         if symbol == arcade.key.SPACE: self.input = self.input + ' '
         
         # If enter, check vs active_word
-        # Clear input and return true if they match
+        # Clear input and get a new word if they match
         if symbol == arcade.key.ENTER:
             if self.active_word == self.input:
                 self.input = ""
-                print (self.input)  # TESTING LINE
-                return True
+                self.getWord()
+
         # On backspace, delete the last character from input
         if symbol == arcade.key.BACKSPACE: self.input = self.input[:-1]
-
-        print (self.input)  # TESTING LINE
-        return False

@@ -30,12 +30,13 @@ class Director(arcade.View):
         self.ship = Ship()
         # TESTING SPAWN ASTEROID CODE
         self.astroid = self.spawn_asteroid(2)
+        # TESTING KEYBOARD INPUT
+        self.inputs = Inputs()
 
         self.spritelist.append(self.ship) # adds actor(all sprites) to sprite list
         self.spritelist.append(self.astroid)
-
-        # TESTING INPUT CODE
-        self.inputs = Inputs()
+        self.spritelist.append(self.inputs) # adds the keyboard inputs as a sprite
+        
     
     def on_draw(self):
         arcade.start_render()
