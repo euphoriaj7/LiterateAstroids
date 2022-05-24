@@ -122,7 +122,7 @@ class Inputs(arcade.Sprite):
         if symbol == arcade.key.ENTER:
             if self.active_word == self.input:
                 self.input = ""
-                self.getWord()
+                self.get_word()
 
         # On backspace, delete the last character from input
         if symbol == arcade.key.BACKSPACE: self.input = self.input[:-1]
