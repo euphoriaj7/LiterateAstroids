@@ -1,3 +1,4 @@
+from LiterateAstroids.game.constants import CENTER_X, CENTER_Y
 import arcade
 import math
 import random
@@ -55,8 +56,8 @@ class Director(arcade.View):
         else:           theta = random.randrange(-1*math.pi, math.pi)
 
         # Set the spawn coordinates based on the spawn angle
-        x = (SCREEN_WIDTH * math.cos(theta)) - (SCREEN_HEIGHT * math.sin(theta))
-        y = (SCREEN_HEIGHT * math.cos(theta)) + (SCREEN_WIDTH * math.sin(theta))
+        x = (CENTER_X + 100 * math.cos(theta)) - (100 * math.sin(theta))
+        y = (CENTER_Y + 100 * math.cos(theta)) + (100 * math.sin(theta))
 
         # Set the velocity vector based on the spawn angle + 180 degrees
         deltaX = speed * math.cos(theta + math.pi)
