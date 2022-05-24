@@ -60,7 +60,7 @@ class Director(arcade.View):
         #update health & score
 
         # COMMENT THIS IN TO TEST MULTIPLE ASTEROIDS
-        # self.spritelist.append(self.spawn_asteroid(20))
+        self.spritelist.append(self.spawn_asteroid(20))
 
     # \\\ SPAWN ASTEROID ///
     # Gets a random angle and spawns the asteroid at that angle and sets its veclocity towards
@@ -75,7 +75,7 @@ class Director(arcade.View):
         else:           theta = random.uniform(math.atan2(SCREEN_WIDTH,-SCREEN_HEIGHT), math.atan2(SCREEN_WIDTH,SCREEN_HEIGHT))
 
         # Set the spawn coordinates based on the spawn angle
-        x = CENTER_X - (spawn_radius * math.sin(theta))
+        x = CENTER_X - spawn_radius * math.sin(theta)
         y = CENTER_Y + spawn_radius * math.cos(theta)
 
         # Set the velocity vector based on the spawn angle + 180 degrees
