@@ -9,6 +9,7 @@ from game.constants import (
     SCREEN_HEIGHT,
     CENTER_X,
     CENTER_Y,
+    WORKING_DIRECTORY,
 )
 from game.astroid import Astroid
 from game.ship import Ship
@@ -24,8 +25,8 @@ class Director(arcade.View):
         self.inputs = None
 
     def setup(self):
-        self.background = arcade.load_texture('game/images/stars.png')
-        self.foreground = arcade.load_texture('game/images/shipshell.png')
+        self.background = arcade.load_texture(WORKING_DIRECTORY+"\LiterateAstroids\game\images\stars.png")
+        self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\LiterateAstroids\game\images\shipshell.png")
         self.spritelist = arcade.SpriteList() # creates a sprite list under name spritelist
         self.ship = Ship()
         # TESTING SPAWN ASTEROID CODE

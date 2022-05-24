@@ -12,7 +12,7 @@ import arcade
 class Inputs(arcade.Sprite):
     
     def __init__(self):
-        super().__init__("game/images/spaceship.png", SHIP_SCALE)
+        super().__init__(None, SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 2
         self.center_y = SCREEN_HEIGHT / 2
         self.word_list = None
