@@ -47,8 +47,8 @@ class Director(arcade.View):
         #call check collisions
         #update health & score
 
-        # COMMENT THIS IN FOR A BENCHMARK
-        # self.spritelist.append(self.spawn_asteroid(2))
+        # COMMENT THIS IN TO TEST MULTIPLE ASTEROIDS
+        # self.spritelist.append(self.spawn_asteroid(20))
 
     # \\\ SPAWN ASTEROID ///
     # Gets a random angle and spawns the asteroid at that angle and sets its veclocity towards
@@ -66,8 +66,8 @@ class Director(arcade.View):
         y = CENTER_Y + CENTER_X * math.cos(theta)
 
         # Set the velocity vector based on the spawn angle + 180 degrees
-        deltaX = math.cos(theta - (math.pi/2))
-        deltaY = math.sin(theta - (math.pi/2))
+        deltaX = speed * math.cos(theta - (math.pi/2))
+        deltaY = speed * math.sin(theta - (math.pi/2))
 
         # Return a new asteroid object
         return Astroid(x, y, deltaX, deltaY)
