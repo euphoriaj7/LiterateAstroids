@@ -37,7 +37,12 @@ class Astroid(arcade.Sprite):
             arcade.csscolor.RED,
             25
             )
-        arcade.draw_circle_filled(self.physics.get_pos()[0], self.physics.get_pos()[1], 10, arcade.color.RED)
+        arcade.draw_circle_filled(
+            self.physics.get_pos()[0],
+            self.physics.get_pos()[1],
+            10,
+            arcade.color.RED
+            )
     
     def update(self):
         self.physics.tick_update()
