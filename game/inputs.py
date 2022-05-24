@@ -19,7 +19,7 @@ class Inputs(arcade.Sprite):
         self.data = Data()
         self.active_word = ""
         self.input = ""
-        self.getWord()
+        self.get_word()
 
     # \\\ GET WORD //
     # Sets the active word to a random word from the word list
