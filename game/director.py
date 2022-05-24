@@ -74,7 +74,7 @@ class Director(arcade.View):
 
         # Set the spawn coordinates based on the spawn angle
         x = CENTER_X - (CENTER_X * math.sin(theta))
-        y = CENTER_Y + CENTER_X * math.cos(theta)
+        y = CENTER_Y + (100 + CENTER_X) * math.cos(theta)
 
         # Set the velocity vector based on the spawn angle + 180 degrees
         deltaX = speed * math.cos(theta - (math.pi/2))
