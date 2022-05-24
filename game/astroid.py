@@ -11,13 +11,14 @@ from game.data import Data
 import arcade
 
 class Astroid(arcade.Sprite):
-    def __init__(self): 
+    def __init__(self, x, y, deltaX, deltaY): 
         super().__init__("game/images/meteor1.png", SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 3
         self.center_y = SCREEN_HEIGHT / 3
         self.getLetter()
         self.draw()
-        
+# THIS IS NEW CODE RELATED TO ASTEROID SPAWNING
+        self.physics = Physics(x, y, deltaX, deltaY)
 
 # to get letter to print in terminal
     def getLetter(self):
@@ -35,12 +36,11 @@ class Astroid(arcade.Sprite):
             arcade.csscolor.RED,
             25
             )
-        
+    
+# ALSO UPDATED FOR ASTEROID SPAWNING
     def update(self):
-        pass
-        
-        
-        
+        self.physics.tick_update()
 
-
-
+        # POSITIONAL TEST PRINTS
+        print("ASTEROID POSITIONAL TEST")
+        print(self.physics.get_pos)
