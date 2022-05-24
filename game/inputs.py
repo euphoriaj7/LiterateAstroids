@@ -21,7 +21,9 @@ class Inputs(arcade.Sprite):
         self.input = ""
         self.getWord()
 
-    def getWord(self): 
+    # \\\ GET WORD //
+    # Sets the active word to a random word from the word list
+    def get_word(self): 
         self.active_word = self.data.random_word()
         self.active_word = self.active_word[:-1]
 
