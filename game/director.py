@@ -13,6 +13,7 @@ from game.constants import (
     WORKING_DIRECTORY,
 )
 from game.astroid import Astroid
+from game.laser import Laser
 from game.ship import Ship
 from game.inputs import Inputs
 
@@ -30,14 +31,16 @@ class Director(arcade.View):
         self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshell.png")
         self.spritelist = arcade.SpriteList() # creates a sprite list under name spritelist
         self.ship = Ship()
+        self.inputs = Inputs()
         # TESTING SPAWN ASTEROID CODE
         self.astroid = self.spawn_asteroid(2)
-        # TESTING KEYBOARD INPUT
-        self.inputs = Inputs()
 
-        self.spritelist.append(self.ship) # adds actor(all sprites) to sprite list
+        self.spritelist.append(self.ship) # adds actor(all sprites) to sprite list /// THIS NEEDS TO BE THE FIRST ITEM ///
         self.spritelist.append(self.astroid)
         self.spritelist.append(self.inputs) # adds the keyboard inputs as a sprite
+
+        # TESTING LASER GENERATION
+        self.spritelist.append(self.spawn_laser(2)) 
         
     
     def on_draw(self):
@@ -90,7 +93,17 @@ class Director(arcade.View):
 
     # \\\ SPAWN LASER ///
     # Spawns a laser from the direction the ship is currently pointing
-    def spawn_laser(self, rotation):
-        pass
-    
-#MOrgan 
+    def spawn_laser(self, speed):
+        theta = self.spritelist[0].get_rotation()   # THIS ASSUMES THE FIRST ELEMENT OF SPRITELIST IS ALWAYS THE SHIP
+        spawn_radius = 20
+
+        # Set the spawn coordinates based on the spawn angle
+        x = CENTER_X - spawn_radius * math.sin(theta)
+        y = CENTER_Y + spawn_radius * math.cos(theta)
+
+        # Set the veclocity vector pointing the same direction as the spawn angle
+        deltaX = speed * math.cos(theta + (math.pi/2))
+        deltaY = speed * math.sin(theta + (math.pi/2))
+
+        # Return a new laser object
+        return Laser(x, y, deltaX, deltaY, theta)
