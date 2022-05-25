@@ -53,6 +53,9 @@ class Director(arcade.View):
     # Check for key press and call the inputs object
     def on_key_press(self, symbol, modifer):
         self.inputs.pressed(symbol, modifer)
+
+    def on_key_release(self, symbol, modifier):
+        self.inputs.released(symbol, modifier)
     
     def on_update(self, delta_time):
         self.spritelist.update() # updates all sprites
