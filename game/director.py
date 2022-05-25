@@ -53,18 +53,17 @@ class Director(arcade.View):
         for sprite in self.spritelist: sprite.draw()
         #place score and word box
 
-    # Check for key press and call the inputs object
-    def on_key_press(self, symbol, modifer):
-        self.inputs.pressed(symbol, modifer)
+    # Check for key press
+    def on_key_press(self, symbol, modifer): self.inputs.pressed(symbol, modifer)
 
-    def on_key_release(self, symbol, modifier):
-        self.inputs.released(symbol, modifier)
+    # Check for key release
+    def on_key_release(self, symbol, modifier): self.inputs.released(symbol, modifier)
     
     def on_update(self, delta_time):
         self.spritelist.update() # updates all sprites
         #call check collisions
         #update health & score
-
+        
         # COMMENT THIS IN TO TEST MULTIPLE ASTEROIDS
         # self.spritelist.append(self.spawn_asteroid(20))
 
