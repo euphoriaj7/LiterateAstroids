@@ -19,13 +19,15 @@ class Inputs(arcade.Sprite):
         self.data = Data()
         self.active_word = ""
         self.input = ""
+        self.is_backspace = False
+        self.backspace_counter = 0
         self.get_word()
 
     # \\\ GET WORD //
     # Sets the active word to a random word from the word list
     def get_word(self): 
         self.active_word = self.data.random_word()
-        self.active_word = self.active_word[:-1]
+        self.active_word = self.active_word[:-1]    # It currently reads an extra space. This deletes that space
 
     # \\\ DRAW ///
     # Displays the current status of the input string on the screen
@@ -37,25 +39,35 @@ class Inputs(arcade.Sprite):
             CENTER_X - 200,
             CENTER_Y - 300,
             arcade.color.RED,
-            25
-            )
+            25)
         # Display active word
         arcade.draw_text(
             self.active_word,
             CENTER_X + 320,
             CENTER_Y - 335,
             arcade.color.RED,
-            25
-            )
+            25)
+    
+    # \\\ Update ///
+    # Watches for signals related to "held down" keys and performs related code
+    # on the clock update
+    def update(self):
+        if len(self.input) <= 0:    self.is_backspace = False       # If the word is empty, stop deleting characters
+        if self.is_backspace:       self.backspace_counter += 1     # While backspae is held down, increment backspace_counter
+        
+        # This uses a modulo to backspace every nth clock cycle. The value of the nth comes from two different speeds (CURRENTLY 3rd and 5th)
+        if (self.backspace_counter < 10):   # Use a slower speed for the first 2 loops of the modulo
+            if self.backspace_counter % 5 >= 4: self.input = self.input[:-1]    # Backspace every 5th cycle (starting from the first of the loop)
+        else:
+            if self.backspace_counter % 3 >= 2: self.input = self.input[:-1]    # Backspace every 3rd cycle (starting from the first of the loop)
 
     # \\\ PRESSED ///
-    # Checks for keyboard input and appends that character to the input string.
-    # If enter is pressed and the input string is equal to active_word, then the
-    # string is reset and a TRUE is returned.
-    # Backspace deletes the last character from the input string.
+    # Watches for all keyboard inputs and performs actions based on their value
     def pressed(self, symbol, modifier):
-        # Check the symbol with the alphabet and add the appropriate char
 
+        # For each key input in the alphabet, that appropriate character will
+        # append to the input string. If shift is held down, letters will#
+        # append as capital letters.
         # UPPERCASE
         if modifier & arcade.key.MOD_SHIFT:
             if symbol == arcade.key.A: self.input = self.input + 'A'
@@ -84,7 +96,6 @@ class Inputs(arcade.Sprite):
             if symbol == arcade.key.X: self.input = self.input + 'X'
             if symbol == arcade.key.Y: self.input = self.input + 'Y'
             if symbol == arcade.key.Z: self.input = self.input + 'Z'
-
         # LOWERCASE
         else:
             if symbol == arcade.key.A: self.input = self.input + 'a'
@@ -124,5 +135,13 @@ class Inputs(arcade.Sprite):
                 self.input = ""
                 self.get_word()
 
-        # On backspace, delete the last character from input
-        if symbol == arcade.key.BACKSPACE: self.input = self.input[:-1]
+        # Signal the update function to start deleting characters
+        if symbol == arcade.key.BACKSPACE: self.is_backspace = True
+    
+    # \\\ RELEASED ///
+    # Watches for all keyboard releases and performs actions based on their value
+    def released(self, symbol, modifier):
+        # On BACKSPACE             
+        if symbol == arcade.key.BACKSPACE:
+            self.backspace_counter = 0  # Reset the backspace_counter
+            self.is_backspace = False   # Signal the update function to stop deleting characters
