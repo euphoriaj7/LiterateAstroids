@@ -18,5 +18,13 @@ class Laser(arcade.Sprite):
         self.center_x = SCREEN_WIDTH / 3
         self.center_y = SCREEN_HEIGHT / 3
         self.physics = Physics(x, y, deltaX, deltaY, rotation)
-        self.getLetter()
         self.draw()
+    
+    def draw(self):
+        arcade.draw_circle_filled(
+            self.physics.get_pos()[0],
+            self.physics.get_pos()[1],
+            10,
+            arcade.color.BLUE)
+
+    def update(self): self.physics.tick_update()
