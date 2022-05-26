@@ -13,11 +13,6 @@
 #   point_to()      // Sets the rotation to have the front of the object face a particular coordinate
 #   tick_update()   // Sets the (x,y) position to the position + the velocity vector
 
-from game.constants import (
-    CENTER_X,
-    CENTER_Y,
-)
-
 import math
 class Physics():
 
@@ -42,7 +37,7 @@ class Physics():
     def get_velocity(self): return (self.deltaX, self.deltaY)
     def get_rotation(self): return (self.rotation)
 
-    def point_to(self, x, y): self.rotation = math.atan2(y-CENTER_Y, x-CENTER_X) - math.pi/2
+    def point_to(self, x, y): self.rotation = math.atan2(x, y)
 
     def tick_update(self):
         self.x = self.x + self.deltaX
