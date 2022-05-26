@@ -1,37 +1,155 @@
+from game.data import Data
+from game.constants import (
+    SCREEN_WIDTH,
+    SCREEN_HEIGHT,
+    SHIP_SCALE,
+    CENTER_X,
+    CENTER_Y,
+)
+
 import arcade
 
-class Inputs():
+class Inputs(arcade.Sprite):
     
     def __init__(self):
-        pass
+        super().__init__(None, SHIP_SCALE)
+        self.center_x = SCREEN_WIDTH / 2
+        self.center_y = SCREEN_HEIGHT / 2
+        self.word_list = None
+        self.data = Data()
+        self.active_word = ""
+        self.input = ""
+        self.is_backspace = False
+        self.backspace_counter = 0
+        self.get_word()
 
-    def on_key_pressed(self, input):
-        if arcade.key.A: input = input + 'a'
-        if arcade.key.B: input = input + 'b'
-        if arcade.key.C: input = input + 'c'
-        if arcade.key.D: input = input + 'd'
-        if arcade.key.E: input = input + 'e'
-        if arcade.key.F: input = input + 'f'
-        if arcade.key.G: input = input + 'g'
-        if arcade.key.H: input = input + 'h'
-        if arcade.key.I: input = input + 'i'
-        if arcade.key.J: input = input + 'j'
-        if arcade.key.K: input = input + 'k'
-        if arcade.key.L: input = input + 'l'
-        if arcade.key.M: input = input + 'm'
-        if arcade.key.N: input = input + 'n'
-        if arcade.key.O: input = input + 'o'
-        if arcade.key.P: input = input + 'p'
-        if arcade.key.Q: input = input + 'q'
-        if arcade.key.R: input = input + 'r'
-        if arcade.key.S: input = input + 's'
-        if arcade.key.T: input = input + 't'
-        if arcade.key.U: input = input + 'u'
-        if arcade.key.V: input = input + 'v'
-        if arcade.key.W: input = input + 'w'
-        if arcade.key.X: input = input + 'x'
-        if arcade.key.Y: input = input + 'y'
-        if arcade.key.Z: input = input + 'z'
+    # \\\ GET WORD //
+    # Sets the active word to a random word from the word list
+    def get_word(self): 
+        self.active_word = self.data.random_word()
+        self.active_word = self.active_word[:-1]    # It currently reads an extra space. This deletes that space
         
-        elif arcade.key.ENTER: return True
-        else: return False
+    
+    def get_active_word(self):
+        return self.active_word
+
+    # \\\ DRAW ///
+    # Displays the current status of the input string on the screen
+    # Displays the active word to match TEST CODE
+    def draw(self):
+        # Display input string
+        arcade.draw_text(
+            self.input,
+            CENTER_X - 200,
+            CENTER_Y - 300,
+            arcade.color.RED,
+            25)
+        # Display active word
+        arcade.draw_text(
+            self.active_word,
+            CENTER_X + 320,
+            CENTER_Y - 335,
+            arcade.color.RED,
+            25)
+
+    
+
+    # \\\ Update ///
+    # Watches for signals related to "held down" keys and performs related code
+    # on the clock update
+    def update(self):
+        if len(self.input) <= 0:    self.is_backspace = False       # If the word is empty, stop deleting characters
+        if self.is_backspace:       self.backspace_counter += 1     # While backspae is held down, increment backspace_counter
+        
+        # This uses a modulo to backspace every nth clock cycle. The value of the nth comes from two different speeds (CURRENTLY 3rd and 5th)
+        if (self.backspace_counter < 10):   # Use a slower speed for the first 2 loops of the modulo
+            if self.backspace_counter % 5 >= 4: self.input = self.input[:-1]    # Backspace every 5th cycle (starting from the first of the loop)
+        else:
+            if self.backspace_counter % 3 >= 2: self.input = self.input[:-1]    # Backspace every 3rd cycle (starting from the first of the loop)
+
+    # \\\ PRESSED ///
+    # Watches for all keyboard inputs and performs actions based on their value
+    def pressed(self, symbol, modifier):
+        # For each key input in the alphabet, that appropriate character will
+        # append to the input string. If shift is held down, letters will#
+        # append as capital letters.
+        # UPPERCASE
+        if modifier & arcade.key.MOD_SHIFT:
+            if symbol == arcade.key.A: self.input = self.input + 'A'
+            if symbol == arcade.key.B: self.input = self.input + 'B'
+            if symbol == arcade.key.C: self.input = self.input + 'C'
+            if symbol == arcade.key.D: self.input = self.input + 'D'
+            if symbol == arcade.key.E: self.input = self.input + 'E'
+            if symbol == arcade.key.F: self.input = self.input + 'F'
+            if symbol == arcade.key.G: self.input = self.input + 'G'
+            if symbol == arcade.key.H: self.input = self.input + 'H'
+            if symbol == arcade.key.I: self.input = self.input + 'I'
+            if symbol == arcade.key.J: self.input = self.input + 'J'
+            if symbol == arcade.key.K: self.input = self.input + 'K'
+            if symbol == arcade.key.L: self.input = self.input + 'L'
+            if symbol == arcade.key.M: self.input = self.input + 'M'
+            if symbol == arcade.key.N: self.input = self.input + 'N'
+            if symbol == arcade.key.O: self.input = self.input + 'O'
+            if symbol == arcade.key.P: self.input = self.input + 'P'
+            if symbol == arcade.key.Q: self.input = self.input + 'Q'
+            if symbol == arcade.key.R: self.input = self.input + 'R'
+            if symbol == arcade.key.S: self.input = self.input + 'S'
+            if symbol == arcade.key.T: self.input = self.input + 'T'
+            if symbol == arcade.key.U: self.input = self.input + 'U'
+            if symbol == arcade.key.V: self.input = self.input + 'V'
+            if symbol == arcade.key.W: self.input = self.input + 'W'
+            if symbol == arcade.key.X: self.input = self.input + 'X'
+            if symbol == arcade.key.Y: self.input = self.input + 'Y'
+            if symbol == arcade.key.Z: self.input = self.input + 'Z'
+        # LOWERCASE
+        else:
+            if symbol == arcade.key.A: self.input = self.input + 'a'
+            if symbol == arcade.key.B: self.input = self.input + 'b'
+            if symbol == arcade.key.C: self.input = self.input + 'c'
+            if symbol == arcade.key.D: self.input = self.input + 'd'
+            if symbol == arcade.key.E: self.input = self.input + 'e'
+            if symbol == arcade.key.F: self.input = self.input + 'f'
+            if symbol == arcade.key.G: self.input = self.input + 'g'
+            if symbol == arcade.key.H: self.input = self.input + 'h'
+            if symbol == arcade.key.I: self.input = self.input + 'i'
+            if symbol == arcade.key.J: self.input = self.input + 'j'
+            if symbol == arcade.key.K: self.input = self.input + 'k'
+            if symbol == arcade.key.L: self.input = self.input + 'l'
+            if symbol == arcade.key.M: self.input = self.input + 'm'
+            if symbol == arcade.key.N: self.input = self.input + 'n'
+            if symbol == arcade.key.O: self.input = self.input + 'o'
+            if symbol == arcade.key.P: self.input = self.input + 'p'
+            if symbol == arcade.key.Q: self.input = self.input + 'q'
+            if symbol == arcade.key.R: self.input = self.input + 'r'
+            if symbol == arcade.key.S: self.input = self.input + 's'
+            if symbol == arcade.key.T: self.input = self.input + 't'
+            if symbol == arcade.key.U: self.input = self.input + 'u'
+            if symbol == arcade.key.V: self.input = self.input + 'v'
+            if symbol == arcade.key.W: self.input = self.input + 'w'
+            if symbol == arcade.key.X: self.input = self.input + 'x'
+            if symbol == arcade.key.Y: self.input = self.input + 'y'
+            if symbol == arcade.key.Z: self.input = self.input + 'z'
+
+        # On SPACE, append the space character to the input string
+        if symbol == arcade.key.SPACE: self.input = self.input + ' '
+        
+        # If enter, check vs active_word
+        # Clear input and get a new word if they match
+        if symbol == arcade.key.ENTER:
+            if self.active_word == self.input:
+                self.input = ""
+                self.get_word()
+                return True
+
+        # Signal the update function to start deleting characters
+        if symbol == arcade.key.BACKSPACE: self.is_backspace = True
+
+        return False
+    
+    # \\\ RELEASED ///
+    # Watches for all keyboard releases and performs actions based on their value
+    def released(self, symbol, modifier):
+        # On BACKSPACE             
+        if symbol == arcade.key.BACKSPACE:
+            self.backspace_counter = 0  # Reset the backspace_counter
+            self.is_backspace = False   # Signal the update function to stop deleting characters

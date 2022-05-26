@@ -1,4 +1,7 @@
 import arcade
+import os
+
+WORKING_DIRECTORY = os.getcwd()
 
 # GAME CONSTANTS
 SCREEN_WIDTH = 1280
@@ -9,4 +12,4 @@ CENTER_Y = SCREEN_HEIGHT / 2
 SHIP_SCALE = 1
 
 # SPACESHIP CONSTANTS
-SHIP_IDLE = arcade.load_texture("game/images/spaceship.png")
+SHIP_IDLE = arcade.load_texture(WORKING_DIRECTORY+"\game\images\spaceship.png")
