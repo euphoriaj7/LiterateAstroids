@@ -12,7 +12,7 @@ import arcade
 
 class Astroid(arcade.Sprite):
     def __init__(self): 
-        super().__init__("game\images\meteor1.png", SHIP_SCALE)
+        super().__init__("game/images/meteor1.png", SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 3
         self.center_y = SCREEN_HEIGHT / 3
         self.text = ""

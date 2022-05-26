@@ -16,7 +16,7 @@ class Director(arcade.View):
 
     def setup(self):
         self.background = arcade.load_texture('game/images/stars.png')
-        self.foreground = arcade.load_texture('game\images\shipshell.png')
+        self.foreground = arcade.load_texture('game/images/shipshell.png')
         self.spritelist = arcade.SpriteList() # creates a sprite list under name spritelist
         self.ship = Ship()
         self.astroid = Astroid()
