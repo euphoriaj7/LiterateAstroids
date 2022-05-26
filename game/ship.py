@@ -1,6 +1,7 @@
 # fucnitons 
 # - score/points
 import arcade
+import math
 from game.actor import Actor
 from game.physics import Physics
 from game.constants import (
@@ -24,9 +25,19 @@ class Ship(arcade.Sprite):
     # \\\ GET ROTATION ///
     # Returns the current rotation value (in radians) from the physics object in Ship
     def get_rotation(self): return self.physics.get_rotation()
+    
+    # \\\ POINT TO ///
+    # Points the ship towards the passed coordinates
+    def point_to(self, pos): self.physics.point_to(pos[0], pos[1])
 
     def draw(self):
-        pass
+        # DRAWS THE SHIP AS A LINE POINTING TOWARDS THE CURRENT ANGLE OF ROTATION
+        arcade.draw_line(
+            CENTER_X, 
+            CENTER_Y, 
+            CENTER_X - 30 * math.sin(self.physics.get_rotation()),
+            CENTER_Y + 30 * math.cos(self.physics.get_rotation()),
+            arcade.color.RED,12)
 
     def update(self):
         """"""
