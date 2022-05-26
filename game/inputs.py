@@ -64,7 +64,6 @@ class Inputs(arcade.Sprite):
     # \\\ PRESSED ///
     # Watches for all keyboard inputs and performs actions based on their value
     def pressed(self, symbol, modifier):
-
         # For each key input in the alphabet, that appropriate character will
         # append to the input string. If shift is held down, letters will#
         # append as capital letters.
@@ -134,9 +133,12 @@ class Inputs(arcade.Sprite):
             if self.active_word == self.input:
                 self.input = ""
                 self.get_word()
+                return True
 
         # Signal the update function to start deleting characters
         if symbol == arcade.key.BACKSPACE: self.is_backspace = True
+
+        return False
     
     # \\\ RELEASED ///
     # Watches for all keyboard releases and performs actions based on their value
