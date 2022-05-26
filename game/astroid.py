@@ -22,6 +22,10 @@ class Astroid(arcade.Sprite):
         self.physics = Physics(x, y, deltaX, deltaY, 0)
         self.getLetter()
         self.draw()
+    
+    # \\\ GET POS ///
+    # Returns the current (x, y) coordinates of the ship
+    def get_pos(self): return self.physics.get_pos()
 
     # to get letter to print in terminal
     def getLetter(self):
@@ -46,4 +50,6 @@ class Astroid(arcade.Sprite):
             )
     
     def update(self):
+        self.center_x = self.physics.get_pos()[0]
+        self.center_y = self.physics.get_pos()[1]
         self.physics.tick_update()
