@@ -2,12 +2,12 @@
 
 # Overview
 
- -This game is to help with the learning process of typing better and make it fun by integrating it with the game of astroids. 
+ This game is designed to help students learn to type better by making it fun. We have integrated the process of learning to type with a game of astroids.
  
- -Are you smarter than an astroid? These astroids all know their favorite words and will challenge you to see if you know them. Can you survive this assault of letters?
+ Are you smarter than an astroid? These astroids all know their favorite words and will challenge you to see if you know them. Can you survive this assault of letters?
 
- -This program is designed to help its players learn to use a keyboard by challenging them to find keys and spell words under threat of oncoming astroids
-
+ This program helps it's players learn to use a keyboard by challenging them to find keys and spell words under the threat of oncoming astroids. Once a player types the correct letter displayed in the astroid, the ship will shoot a laser at the astroid to destroy it. 
+(Talk a little bit more about what the game does. i.e. what it takes to win the game)
 
 [Software Demo Video](http://youtube.link.goes.here)
 
@@ -19,7 +19,6 @@
     arcade
 
 # Collaborators
-
 
 Team Leader - Jeffrey Pitcher 
 
@@ -33,12 +32,12 @@ Configuration Manager - Sami Thueson
 
 Morale Officer - Bekah Bentley 
 
-
 # Useful Websites
 
-* W3 Schools - Python Tutorial https://www.w3schools.com/python/
-* Visual Studio Code https://code.visualstudio.com/
-* Python Arcade https://api.arcade.academy/en/latest/get_started.html#
+* [W3 Schools - Python Tutorial](https://www.w3schools.com/python/)
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [Python Arcade Official Documentation](https://api.arcade.academy/en/latest/get_started.html#)
+* [More Python Arcade Documentation](https://realpython.com/arcade-python-game-framework/)
 
 # Future Work
 
