@@ -43,7 +43,7 @@ class Director(arcade.View):
         self.ship = Ship()
         self.inputs = Inputs()
         self.spritelist.append(self.ship) # adds actor(all sprites) to sprite list /// THIS NEEDS TO BE THE FIRST ITEM ///
-        self.spritelist.append(self.inputs) # adds the keyboard inputs as a sprite
+        #self.spritelist.append(self.inputs) # adds the keyboard inputs as a sprite
         self.asteroidlist.append(Astroid(2)) # spawn in the first asteroid
         
     
@@ -54,10 +54,11 @@ class Director(arcade.View):
 
         # Updates graphics for all sprites
         self.spritelist.draw()
-        ##for sprite in self.spritelist:      sprite.draw()
-        for sprite in self.asteroidlist:    sprite.draw()
-        for sprite in self.laserlist:       sprite.draw()
-        #place score and word box
+        self.asteroidlist.draw()
+        self.laserlist.draw()
+
+        # Update text on screen
+        self.inputs.draw()
 
     # Check for key press and for is_match signal
     # Spawns new asteroid with new word if there is a match
@@ -66,7 +67,7 @@ class Director(arcade.View):
         if self.inputs.pressed(symbol, modifer):
             self.asteroidlist.append(Astroid(2))
             self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
-            self.laserlist.append(Laser(40, self.spritelist[0].get_rotation()))
+            self.laserlist.append(Laser(40, self.spritelist[0].angle))
             
     # Check for key release
     def on_key_release(self, symbol, modifier): self.inputs.released(symbol, modifier)
@@ -76,19 +77,12 @@ class Director(arcade.View):
         self.asteroidlist.update()
         self.laserlist.update()
 
+        self.inputs.update()
+
         # Check for collisions with the laser and the asteroids
         # Delete both if there is contact
         if (len(self.laserlist) > 0):
             if arcade.check_for_collision(self.asteroidlist[0], self.laserlist[0]):
                 self.laserlist.pop(0)
                 self.asteroidlist.pop(0)
-        
-        # # ASTEROID/LASER SPAWNING/DESTRUCTION BENCHMARK
-        # self.test_counter += 1
-        # spawn_freq = 25
-        # if (self.test_counter%spawn_freq>=spawn_freq-1):
-        #     self.asteroidlist.append(Astroid(2))
-        #     self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
-        #     self.laserlist.append(Laser(40, self.spritelist[0].get_rotation()))
-
     
