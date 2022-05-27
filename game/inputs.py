@@ -38,15 +38,15 @@ class Inputs(arcade.Sprite):
             self.input,
             CENTER_X - 200,
             CENTER_Y - 300,
-            arcade.color.RED,
-            25)
+            arcade.color.GREEN,
+            30, font_name="Kenney Pixel")
         # Display active word
         arcade.draw_text(
             self.active_word,
             CENTER_X + 320,
             CENTER_Y - 335,
-            arcade.color.RED,
-            25)
+            arcade.color.GREEN,
+            30, font_name="Kenney Pixel")
     
     # \\\ Update ///
     # Watches for signals related to "held down" keys and performs related code
