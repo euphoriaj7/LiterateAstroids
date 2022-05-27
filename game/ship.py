@@ -40,4 +40,4 @@ class Ship(arcade.Sprite):
             arcade.color.RED,12)
 
     def update(self):
-        """"""
+        self.angle = self.physics.get_rotation() * 180 /math.pi

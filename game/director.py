@@ -44,7 +44,7 @@ class Director(arcade.View):
         self.inputs = Inputs()
         self.spritelist.append(self.ship) # adds actor(all sprites) to sprite list /// THIS NEEDS TO BE THE FIRST ITEM ///
         self.spritelist.append(self.inputs) # adds the keyboard inputs as a sprite
-        self.asteroidlist.append(self.spawn_asteroid(2)) # spawn in the first asteroid
+        self.asteroidlist.append(Astroid(2)) # spawn in the first asteroid
         
     
     def on_draw(self):
@@ -53,7 +53,8 @@ class Director(arcade.View):
         arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.foreground)
 
         # Updates graphics for all sprites
-        for sprite in self.spritelist:      sprite.draw()
+        self.spritelist.draw()
+        ##for sprite in self.spritelist:      sprite.draw()
         for sprite in self.asteroidlist:    sprite.draw()
         for sprite in self.laserlist:       sprite.draw()
         #place score and word box
@@ -63,9 +64,9 @@ class Director(arcade.View):
     # Spawns a new laser pointed at the first asteroid in the list
     def on_key_press(self, symbol, modifer):
         if self.inputs.pressed(symbol, modifer):
-            self.asteroidlist.append(self.spawn_asteroid(2))
+            self.asteroidlist.append(Astroid(2))
             self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
-            self.laserlist.append(self.spawn_laser(40))
+            self.laserlist.append(Laser(40, self.spritelist[0].get_rotation()))
             
     # Check for key release
     def on_key_release(self, symbol, modifier): self.inputs.released(symbol, modifier)
@@ -86,47 +87,8 @@ class Director(arcade.View):
         # self.test_counter += 1
         # spawn_freq = 25
         # if (self.test_counter%spawn_freq>=spawn_freq-1):
-        #     self.asteroidlist.append(self.spawn_asteroid(2))
+        #     self.asteroidlist.append(Astroid(2))
         #     self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
-        #     self.laserlist.append(self.spawn_laser(40))
+        #     self.laserlist.append(Laser(40, self.spritelist[0].get_rotation()))
 
-
-    # \\\ SPAWN ASTEROID ///
-    # Gets a random angle and spawns the asteroid at that angle and sets its veclocity towards
-    # the center of the screen
-    def spawn_asteroid(self, speed):
-        # Randomly select the side the spawing will happen
-        side = random.randint(1,2)
-        spawn_radius = math.sqrt(CENTER_X**2 + CENTER_Y**2) + 30
-
-        # Set a random spawn angle based on the side selected
-        if (side == 1): theta = random.uniform(math.atan2(-SCREEN_WIDTH,-SCREEN_HEIGHT), math.atan2(-SCREEN_WIDTH,SCREEN_HEIGHT))
-        else:           theta = random.uniform(math.atan2(SCREEN_WIDTH,-SCREEN_HEIGHT), math.atan2(SCREEN_WIDTH,SCREEN_HEIGHT))
-
-        # Set the spawn coordinates based on the spawn angle
-        x = CENTER_X - spawn_radius * math.sin(theta)
-        y = CENTER_Y + spawn_radius * math.cos(theta)
-
-        # Set the velocity vector based on the spawn angle + 180 degrees
-        deltaX = speed * math.cos(theta - (math.pi/2))
-        deltaY = speed * math.sin(theta - (math.pi/2))
-
-        # Return a new asteroid object
-        return Astroid(x, y, deltaX, deltaY)
-
-    # \\\ SPAWN LASER ///
-    # Spawns a laser from the direction the ship is currently pointing
-    def spawn_laser(self, speed):
-        theta = self.spritelist[0].get_rotation()   # THIS ASSUMES THE FIRST ELEMENT OF SPRITELIST IS ALWAYS THE SHIP
-        spawn_radius = 20
-
-        # Set the spawn coordinates based on the spawn angle
-        x = CENTER_X - spawn_radius * math.sin(theta)
-        y = CENTER_Y + spawn_radius * math.cos(theta)
-
-        # Set the veclocity vector pointing the same direction as the spawn angle
-        deltaX = speed * math.cos(theta + (math.pi/2))
-        deltaY = speed * math.sin(theta + (math.pi/2))
-
-        # Return a new laser object
-        return Laser(x, y, deltaX, deltaY, theta)
+    
