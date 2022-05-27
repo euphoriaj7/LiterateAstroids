@@ -29,16 +29,12 @@ class Laser(arcade.Sprite):
         spawn_radius = 20
 
         # Set the spawn coordinates based on the spawn angle
-        x = CENTER_X - spawn_radius * math.sin(theta)
-        y = CENTER_Y + spawn_radius * math.cos(theta)
+        self.center_x = CENTER_X - spawn_radius * math.sin(theta)
+        self.center_y = CENTER_Y + spawn_radius * math.cos(theta)
 
         # Set the veclocity vector pointing the same direction as the spawn angle
-        deltaX = speed * math.cos(theta + (math.pi/2))
-        deltaY = speed * math.sin(theta + (math.pi/2))
+        self.change_x = speed * math.cos(theta + (math.pi/2))
+        self.change_y = speed * math.sin(theta + (math.pi/2))
 
-        # Set positional updates to calculated values
-        self.center_x = x
-        self.center_y = y
-        self.change_x = deltaX
-        self.change_y = deltaY
+        # Convert angle back to radians
         self.angle = theta * 180 /math.pi

@@ -36,18 +36,12 @@ class Astroid(arcade.Sprite):
         else:           theta = random.uniform(math.atan2(SCREEN_WIDTH,-SCREEN_HEIGHT), math.atan2(SCREEN_WIDTH,SCREEN_HEIGHT))
 
         # Set the spawn coordinates based on the spawn angle
-        x = CENTER_X - spawn_radius * math.sin(theta)
-        y = CENTER_Y + spawn_radius * math.cos(theta)
+        self.center_x = CENTER_X - spawn_radius * math.sin(theta)
+        self.center_y = CENTER_Y + spawn_radius * math.cos(theta)
 
         # Set the velocity vector based on the spawn angle + 180 degrees
-        deltaX = speed * math.cos(theta - (math.pi/2))
-        deltaY = speed * math.sin(theta - (math.pi/2))
-
-        # Set positional updates to calculated values
-        self.center_x = x
-        self.center_y = y
-        self.change_x = deltaX
-        self.change_y = deltaY
+        self.change_x = speed * math.cos(theta - (math.pi/2))
+        self.change_y = speed * math.sin(theta - (math.pi/2))
 
         # Set rotation to a random spin one way or the other
         self.angle = random.randint(-180, 180) 
