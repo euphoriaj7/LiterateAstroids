@@ -1,16 +1,7 @@
-#from LiterateAstroids.game.constants import CENTER_X, CENTER_Y
-from ast import In
-from distutils.spawn import spawn
 import arcade
-import math
-import random
-import time
-
 from game.constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
-    CENTER_X,
-    CENTER_Y,
     WORKING_DIRECTORY,
 )
 from game.astroid import Astroid
@@ -28,9 +19,6 @@ class Director(arcade.View):
         self.ship = None
         self.astroid = None
         self.inputs = None
-        
-        # THIS IS PURELY A TEST VALUE (delete later)
-        self.test_counter = 0
 
     def setup(self):
         self.background = arcade.load_texture(WORKING_DIRECTORY+"\game\images\stars.png")
@@ -42,20 +30,21 @@ class Director(arcade.View):
         
         self.ship = Ship()
         self.inputs = Inputs()
-        self.spritelist.append(self.ship) # adds actor(all sprites) to sprite list /// THIS NEEDS TO BE THE FIRST ITEM ///
-        #self.spritelist.append(self.inputs) # adds the keyboard inputs as a sprite
+        self.spritelist.append(self.ship) # adds ship to sprite list /// THIS NEEDS TO BE THE FIRST ITEM ///
         self.asteroidlist.append(Astroid(2)) # spawn in the first asteroid
         
-    
     def on_draw(self):
         arcade.start_render()
+        # Draw background
         arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
-        arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.foreground)
 
         # Updates graphics for all sprites
         self.spritelist.draw()
         self.asteroidlist.draw()
         self.laserlist.draw()
+
+        # Draw foreground
+        arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.foreground)
 
         # Update text on screen
         self.inputs.draw()
@@ -64,6 +53,7 @@ class Director(arcade.View):
     # Spawns new asteroid with new word if there is a match
     # Spawns a new laser pointed at the first asteroid in the list
     def on_key_press(self, symbol, modifer):
+        # Waches for the "word matched" signal from the inputs object
         if self.inputs.pressed(symbol, modifer):
             self.asteroidlist.append(Astroid(2))
             self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
@@ -77,6 +67,7 @@ class Director(arcade.View):
         self.asteroidlist.update()
         self.laserlist.update()
 
+        # Update keyboard inputs
         self.inputs.update()
 
         # Check for collisions with the laser and the asteroids
@@ -85,4 +76,3 @@ class Director(arcade.View):
             if arcade.check_for_collision(self.asteroidlist[0], self.laserlist[0]):
                 self.laserlist.pop(0)
                 self.asteroidlist.pop(0)
-    

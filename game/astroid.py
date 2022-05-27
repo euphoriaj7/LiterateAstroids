@@ -1,6 +1,5 @@
 # functions 
 # - words and get/setter
-from os import O_TEXT
 from game.constants import (
     CENTER_X,
     CENTER_Y,
