@@ -26,7 +26,7 @@ class Laser(arcade.Sprite):
     # Spawns a laser from the direction the ship is currently pointing
     def spawn_laser(self, speed, theta):
         theta = math.radians(theta)
-        spawn_radius = 20
+        spawn_radius = 30
 
         # Set the spawn coordinates based on the spawn angle
         self.center_x = CENTER_X - spawn_radius * math.sin(theta)
