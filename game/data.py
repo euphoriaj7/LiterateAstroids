@@ -18,7 +18,4 @@ class Data():
         self.read_words()
         random_numer_word = random.randrange(0,25)
         letter = self.list_of_words[random_numer_word]
-        return letter
-
-
-    
+        return letter    
