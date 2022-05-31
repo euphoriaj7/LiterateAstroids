@@ -2,8 +2,6 @@
 # - score/points
 import arcade
 import math
-from game.actor import Actor
-from game.physics import Physics
 from game.constants import (
     SCREEN_HEIGHT,
     SCREEN_WIDTH,
@@ -18,16 +16,10 @@ class Ship(arcade.Sprite):
         super().__init__(WORKING_DIRECTORY+"\game\images\spaceship.png", SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 2
         self.center_y = SCREEN_HEIGHT / 2
-        self.physics = Physics(CENTER_X, CENTER_Y, 0, 0, 0) # Insantiate the physics object with POS at the center of the screen
-        #self.set_image("images\spaceship.png")
-        #self.set_position(640, 360)
-    
-    # \\\ GET ROTATION ///
-    # Returns the current rotation value (in radians) from the physics object in Ship
-    def get_rotation(self): return self.physics.get_rotation()
-    
+
     # \\\ POINT TO ///
     # Points the ship towards the passed coordinates
+<<<<<<< HEAD
     def point_to(self, pos): self.physics.point_to(pos[0], pos[1])
 
     def draw(self):
@@ -41,3 +33,6 @@ class Ship(arcade.Sprite):
 
     def update(self):
         """"""
+=======
+    def point_to(self, pos): self.angle = ((math.atan2(pos[1] - CENTER_Y, pos[0] - CENTER_X) - math.pi/2) * 180/math.pi)
+>>>>>>> 01b2f8a72f4cf6ec30fe9a46eb4cb3a68cad017c

@@ -18,7 +18,11 @@ class Data():
         self.read_words()
         random_numer_word = random.randrange(0,25)
         letter = self.list_of_words[random_numer_word]
+<<<<<<< HEAD
         return letter
 
 
     
+=======
+        return letter
+>>>>>>> 01b2f8a72f4cf6ec30fe9a46eb4cb3a68cad017c

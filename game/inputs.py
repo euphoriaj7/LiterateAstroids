@@ -28,11 +28,19 @@ class Inputs(arcade.Sprite):
     def get_word(self): 
         self.active_word = self.data.random_word()
         self.active_word = self.active_word[:-1]    # It currently reads an extra space. This deletes that space
+<<<<<<< HEAD
         
     
     def get_active_word(self):
         return self.active_word
 
+=======
+
+    
+    def get_active_word(self):
+        return self.active_word
+    
+>>>>>>> 01b2f8a72f4cf6ec30fe9a46eb4cb3a68cad017c
     # \\\ DRAW ///
     # Displays the current status of the input string on the screen
     # Displays the active word to match TEST CODE
@@ -42,18 +50,29 @@ class Inputs(arcade.Sprite):
             self.input,
             CENTER_X - 200,
             CENTER_Y - 300,
+<<<<<<< HEAD
             arcade.color.RED,
             25)
+=======
+            arcade.color.GREEN,
+            30, font_name="Kenney Pixel")
+>>>>>>> 01b2f8a72f4cf6ec30fe9a46eb4cb3a68cad017c
         # Display active word
         arcade.draw_text(
             self.active_word,
             CENTER_X + 320,
             CENTER_Y - 335,
+<<<<<<< HEAD
             arcade.color.RED,
             25)
 
     
 
+=======
+            arcade.color.GREEN,
+            30, font_name="Kenney Pixel")
+    
+>>>>>>> 01b2f8a72f4cf6ec30fe9a46eb4cb3a68cad017c
     # \\\ Update ///
     # Watches for signals related to "held down" keys and performs related code
     # on the clock update
