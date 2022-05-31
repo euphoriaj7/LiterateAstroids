@@ -11,7 +11,7 @@ import arcade
 
 class Inputs(arcade.Sprite):
     
-    def __init__(self):
+    def __init__(self, data):
         super().__init__(None, SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 2
         self.center_y = SCREEN_HEIGHT / 2
@@ -29,6 +29,10 @@ class Inputs(arcade.Sprite):
         self.active_word = self.data.random_word()
         self.active_word = self.active_word[:-1]    # It currently reads an extra space. This deletes that space
 
+    
+    def get_active_word(self):
+        return self.active_word
+    
     # \\\ DRAW ///
     # Displays the current status of the input string on the screen
     # Displays the active word to match TEST CODE

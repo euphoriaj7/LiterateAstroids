@@ -19,7 +19,8 @@ class Director(arcade.View):
         self.ship = None
         self.astroid = None
         self.inputs = None
-
+        self.text = None
+        
     def setup(self):
         self.background = arcade.load_texture(WORKING_DIRECTORY+"\game\images\stars.png")
         self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshell.png")
