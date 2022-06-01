@@ -16,6 +16,6 @@ class Data():
 # to get random number to get random word
     def random_word(self):
         self.read_words()
-        random_numer_word = random.randrange(0,25)
+        random_numer_word = random.randrange(0,196)
         letter = self.list_of_words[random_numer_word]
         return letter
