@@ -18,12 +18,10 @@ class Astroid(arcade.Sprite):
         self.center_x = SCREEN_WIDTH / 3
         self.center_y = SCREEN_HEIGHT / 3
         self.spawn_asteroid(speed)
-
+        self.inputs = inputs
 
         # the active word 
         the_word = self.inputs.get_active_word()
-    
-
     
     # \\\ GET POS ///
     # Returns the current (x, y) coordinates
