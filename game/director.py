@@ -43,8 +43,13 @@ class Director(arcade.View):
         
     def on_draw(self):
         arcade.start_render()
+        # Draw background
         arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
 
+        # Updates graphics for all sprites
+        self.laserlist.draw()
+        self.spritelist.draw()
+        self.asteroidlist.draw()
 
         # Draw foreground
         arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.foreground)
