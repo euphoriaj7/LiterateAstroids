@@ -26,12 +26,6 @@ class Astroid(arcade.Sprite):
     # Returns the current (x, y) coordinates
     def get_pos(self): return self.center_x, self.center_y
     
-<<<<<<< HEAD
-    def update(self):
-        self.center_x = self.physics.get_pos()[0]
-        self.center_y = self.physics.get_pos()[1]
-        self.physics.tick_update()
-=======
     # \\\ SPAWN ASTEROID ///
     # Gets a random angle and spawns the asteroid at that angle and sets its veclocity towards
     # the center of the screen
@@ -55,4 +49,3 @@ class Astroid(arcade.Sprite):
         # Set rotation to a random spin one way or the other
         self.angle = random.randint(-180, 180) 
         self.change_angle = random.uniform(-1,1)
->>>>>>> 01b2f8a72f4cf6ec30fe9a46eb4cb3a68cad017c
