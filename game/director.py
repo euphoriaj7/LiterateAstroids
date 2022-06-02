@@ -65,13 +65,15 @@ class Director(arcade.View):
         if self.inputs.pressed(symbol, modifer):
             self.asteroidlist.append(Astroid(2, self.inputs))
             self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
-            self.laserlist.append(Laser(40, self.spritelist[0].angle))
+            
             
     # Check for key release
     def on_key_release(self, symbol, modifier): self.inputs.released(symbol, modifier)
     
     def on_update(self, delta_time):
-        self.spritelist.update() # updates all sprites
+        for sprite in self.spritelist:
+            if sprite.update() == True: self.laserlist.append(Laser(40, self.spritelist[0].get_target_angle())) 
+
         self.asteroidlist.update()
         self.laserlist.update()
 
