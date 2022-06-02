@@ -14,9 +14,11 @@ class Tracker():
     def resethp(self):
         self.health = 6
 
-    def checkscore(self):
+    def getscore(self):
         return self.score
 
     def addscore(self):
-        self.score
-#reset score f
+        self.score += 5
+
+    def resetscore(self):
+        self.score = 0
