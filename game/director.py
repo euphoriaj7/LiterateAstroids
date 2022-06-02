@@ -42,7 +42,7 @@ class Director(arcade.View):
         self.ship = Ship()
         self.inputs = Inputs()
         self.spritelist.append(self.ship) # adds ship to sprite list /// THIS NEEDS TO BE THE FIRST ITEM ///
-        self.asteroidlist.append(Astroid(2, self.inputs)) # spawn in the first asteroid
+        self.asteroidlist.append(Astroid(2)) # spawn in the first asteroid
         
     def on_draw(self):
         arcade.start_render()
@@ -53,6 +53,8 @@ class Director(arcade.View):
         self.laserlist.draw()
         self.spritelist.draw()
         self.asteroidlist.draw()
+        for astroid in self.asteroidlist:
+            astroid.draw_letter(self.inputs)
 
         # Draw foreground
         if self.tracker.gethp() == 6:
@@ -83,6 +85,7 @@ class Director(arcade.View):
     def on_key_press(self, symbol, modifer):
         # Waches for the "word matched" signal from the inputs object
         if self.inputs.pressed(symbol, modifer):
+            self.asteroidlist.append(Astroid(2))
             self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
             
             
@@ -107,7 +110,7 @@ class Director(arcade.View):
                 self.asteroidlist.pop(0)
         
         if len(self.asteroidlist) <= 0:
-            self.asteroidlist.append(Astroid(2, self.inputs))
+            self.asteroidlist.append(Astroid(2))
 
         if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
             self.asteroidlist.pop(0)
