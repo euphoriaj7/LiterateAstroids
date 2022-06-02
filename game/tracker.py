@@ -5,7 +5,7 @@ class Tracker():
         self.health = 6
         self.score = 0
 
-    def checkhp(self):
+    def gethp(self):
         return self.health
 
     def minushp(self):

@@ -15,6 +15,8 @@ from game.astroid import Astroid
 from game.laser import Laser
 from game.ship import Ship
 from game.inputs import Inputs
+from game.tracker import Tracker
+from game.gameover import GameOver
 
 class Director(arcade.View):
 
@@ -26,11 +28,12 @@ class Director(arcade.View):
         self.ship = None
         self.astroid = None
         self.inputs = Inputs()
+        self.tracker = Tracker()
+        self.gameover = GameOver()
         self.text = None
         
     def setup(self):
         self.background = arcade.load_texture(WORKING_DIRECTORY+"\game\images\stars.png")
-        self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH6.png")
         
         self.spritelist = arcade.SpriteList() # creates a sprite list under name spritelist
         self.asteroidlist = arcade.SpriteList()
@@ -52,6 +55,23 @@ class Director(arcade.View):
         self.asteroidlist.draw()
 
         # Draw foreground
+        if self.tracker.gethp() == 6:
+            self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH6.png")
+        elif self.tracker.gethp() == 5:
+            self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH5.png")
+        elif self.tracker.gethp() == 4:
+            self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH4.png")
+        elif self.tracker.gethp() == 3:
+            self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH3.png")
+        elif self.tracker.gethp() == 2:
+            self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH2.png")
+        elif self.tracker.gethp() == 1:
+            self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH1.png")
+        elif self.tracker.gethp() < 1:
+            self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH0.png")
+        
+        
+
         arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.foreground)
 
         # Update text on screen
@@ -91,4 +111,10 @@ class Director(arcade.View):
 
         if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
             self.asteroidlist.pop(0)
+            if self.tracker.gethp() > 1:
+                self.tracker.minushp()
+            else:
+                # Wait 2 seconds
+                self.window.show_view(self.gameover)
+
             
