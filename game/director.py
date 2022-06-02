@@ -63,7 +63,6 @@ class Director(arcade.View):
     def on_key_press(self, symbol, modifer):
         # Waches for the "word matched" signal from the inputs object
         if self.inputs.pressed(symbol, modifer):
-            self.asteroidlist.append(Astroid(2, self.inputs))
             self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
             
             
@@ -86,7 +85,10 @@ class Director(arcade.View):
             if arcade.check_for_collision(self.asteroidlist[0], self.laserlist[0]):
                 self.laserlist.pop(0)
                 self.asteroidlist.pop(0)
+        
+        if len(self.asteroidlist) <= 0:
+            self.asteroidlist.append(Astroid(2, self.inputs))
 
         if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
             self.asteroidlist.pop(0)
-            self.asteroidlist.append(Astroid(2, self.inputs))
+            
