@@ -29,6 +29,7 @@ class Director(arcade.View):
         self.astroid = None
         self.inputs = Inputs()
         self.tracker = Tracker()
+        self.gameover = GameOver()
         self.text = None
         
     def setup(self):
@@ -111,6 +112,7 @@ class Director(arcade.View):
             if self.tracker.gethp() > 1:
                 self.tracker.minushp()
             else:
-                self.window.show_view(gameover_view)
+                # Wait 2 seconds
+                self.window.show_view(self.gameover)
 
             
