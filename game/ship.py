@@ -29,8 +29,6 @@ class Ship(arcade.Sprite):
         if self.target_angle < -180:    self.target_angle += 360
         if self.target_angle > 180:     self.target_angle -= 360
 
-        print(self.target_angle - self.angle)
-
         diff_angle = self.target_angle - self.angle
         if diff_angle > 0:  self.spin_direction = 1 
         else:               self.spin_direction = -1
