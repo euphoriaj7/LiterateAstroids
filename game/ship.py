@@ -46,6 +46,6 @@ class Ship(arcade.Sprite):
             self.spin_direction = 0
             self.angle = self.target_angle
             return True
-        elif abs(self.change_angle) < self.max_speed: self.change_angle += .5 * self.spin_direction
+        elif abs(self.change_angle) < self.max_speed: self.change_angle += 2.5 * self.spin_direction
 
         return False
