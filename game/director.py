@@ -30,7 +30,7 @@ class Director(arcade.View):
         
     def setup(self):
         self.background = arcade.load_texture(WORKING_DIRECTORY+"\game\images\stars.png")
-        self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshell.png")
+        self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH6.png")
         
         self.spritelist = arcade.SpriteList() # creates a sprite list under name spritelist
         self.asteroidlist = arcade.SpriteList()
@@ -84,3 +84,7 @@ class Director(arcade.View):
             if arcade.check_for_collision(self.asteroidlist[0], self.laserlist[0]):
                 self.laserlist.pop(0)
                 self.asteroidlist.pop(0)
+
+        if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
+            self.asteroidlist.pop(0)
+            self.asteroidlist.append(Astroid(2, self.inputs))
