@@ -1,4 +1,11 @@
+#from LiterateAstroids.game.constants import CENTER_X, CENTER_Y
+from ast import In
+from distutils.spawn import spawn
 import arcade
+import math
+import random
+import time
+
 from game.constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
@@ -18,12 +25,12 @@ class Director(arcade.View):
         self.laserlist = None
         self.ship = None
         self.astroid = None
-        self.inputs = None
+        self.inputs = Inputs()
         self.text = None
         
     def setup(self):
         self.background = arcade.load_texture(WORKING_DIRECTORY+"\game\images\stars.png")
-        self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshell.png")
+        self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH6.png")
         
         self.spritelist = arcade.SpriteList() # creates a sprite list under name spritelist
         self.asteroidlist = arcade.SpriteList()
