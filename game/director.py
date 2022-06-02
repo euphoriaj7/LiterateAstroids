@@ -103,6 +103,7 @@ class Director(arcade.View):
             if arcade.check_for_collision(self.asteroidlist[0], self.laserlist[0]):
                 self.laserlist.pop(0)
                 self.asteroidlist.pop(0)
+                self.tracker.addscore()
         
         if len(self.asteroidlist) <= 0:
             self.asteroidlist.append(Astroid(2, self.inputs))
@@ -114,5 +115,3 @@ class Director(arcade.View):
             else:
                 # Wait 2 seconds
                 self.window.show_view(self.gameover)
-
-            
