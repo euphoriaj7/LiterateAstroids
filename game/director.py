@@ -71,8 +71,6 @@ class Director(arcade.View):
         elif self.tracker.gethp() < 1:
             self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH0.png")
         
-        
-
         arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.foreground)
 
         # Update text on screen
