@@ -18,7 +18,7 @@ class Ship(arcade.Sprite):
         self.center_y = SCREEN_HEIGHT / 2
 
         self.rotation_time = 10
-        self.rotation_tick = self.rotation_time+1
+        self.rotation_tick = self.rotation_time+2
 
         self.start_angle = 0
         self.target_angle = 0
@@ -36,8 +36,6 @@ class Ship(arcade.Sprite):
         self.delta_angle = self.target_angle - self.start_angle
         self.rotation_tick = 0
 
-        print(self.delta_angle)
-
         if self.delta_angle > 180:  self.delta_angle -= 360
         if self.delta_angle < -180: self.delta_angle += 360
         
@@ -48,7 +46,8 @@ class Ship(arcade.Sprite):
             self.rotation_tick += 1
             self.angle = (self.start_angle + ((self.delta_angle/2) * math.sin(((math.pi/self.rotation_time)*self.rotation_tick)-(math.pi/2))) + (self.delta_angle/2))
             
-        if self.rotation_tick == self.rotation_time:
+        if self.rotation_tick == self.rotation_time+1:
+            self.rotation_tick += 1
             self.angle = self.target_angle
             return True
 
