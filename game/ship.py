@@ -16,36 +16,39 @@ class Ship(arcade.Sprite):
         super().__init__(WORKING_DIRECTORY+"\game\images\spaceship.png", SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 2
         self.center_y = SCREEN_HEIGHT / 2
-        self.max_speed = 10
+
+        self.rotation_time = 10
+        self.rotation_tick = self.rotation_time+2
+
+        self.start_angle = 0
         self.target_angle = 0
-        self.spin_direction = 0
+        self.delta_angle = 0
 
     def get_target_angle(self): return self.target_angle
 
-    # \\\ POINT TO ///
-    # Points the ship towards the passed coordinates
     def point_to(self, pos):
+        self.start_angle = self.angle
         self.target_angle = ((math.atan2(pos[1] - CENTER_Y, pos[0] - CENTER_X) - math.pi/2) * 180/math.pi)
-        if self.target_angle < -180:    self.target_angle += 360
+
         if self.target_angle > 180:     self.target_angle -= 360
+        if self.target_angle < -180:    self.target_angle += 360
+        
+        self.delta_angle = self.target_angle - self.start_angle
+        self.rotation_tick = 0
 
-        diff_angle = self.target_angle - self.angle
-        if diff_angle > 0:  self.spin_direction = 1 
-        else:               self.spin_direction = -1
-
-        if abs(diff_angle) > 180: self.spin_direction *= -1
-
+        if self.delta_angle > 180:  self.delta_angle -= 360
+        if self.delta_angle < -180: self.delta_angle += 360
+        
     def update(self):
         super().update()
 
-        if self.angle > 180:    self.angle -= 360
-        if self.angle < -180:   self.angle += 360
-
-        if abs(self.target_angle - self.angle) < abs(self.change_angle):
-            self.change_angle = 0
-            self.spin_direction = 0
+        if self.rotation_tick <= self.rotation_time:
+            self.rotation_tick += 1
+            self.angle = (self.start_angle + ((self.delta_angle/2) * math.sin(((math.pi/self.rotation_time)*self.rotation_tick)-(math.pi/2))) + (self.delta_angle/2))
+            
+        if self.rotation_tick == self.rotation_time+1:
+            self.rotation_tick += 1
             self.angle = self.target_angle
             return True
-        elif abs(self.change_angle) < self.max_speed: self.change_angle += 2.5 * self.spin_direction
 
         return False

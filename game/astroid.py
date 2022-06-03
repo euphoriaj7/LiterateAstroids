@@ -13,16 +13,16 @@ import math
 import random
 
 class Astroid(arcade.Sprite):
-    def __init__(self, speed): 
+    def __init__(self, speed, inputs): 
         super().__init__(WORKING_DIRECTORY+"\game\images\meteor1.png", SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 3
         self.center_y = SCREEN_HEIGHT / 3
         self.spawn_asteroid(speed)
-         
-        
-    def draw_letter(self, inputs):
+
         # gets active word/letter from inputs
         self.the_word = inputs.get_active_word()
+         
+    def draw_letter(self):
         # printing it in the screen 
         arcade.draw_text(self.the_word, self.center_x, self.center_y, arcade.color.GREEN,
             30, font_name="Kenney Pixel")
