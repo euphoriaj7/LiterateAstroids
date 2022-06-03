@@ -42,7 +42,6 @@ class Director(arcade.View):
         self.ship = Ship()
         self.inputs = Inputs()
         self.spritelist.append(self.ship) # adds ship to sprite list /// THIS NEEDS TO BE THE FIRST ITEM ///
-        self.asteroidlist.append(Astroid(2)) # spawn in the first asteroid
         
     def on_draw(self):
         arcade.start_render()
@@ -54,7 +53,7 @@ class Director(arcade.View):
         self.spritelist.draw()
         self.asteroidlist.draw()
         for astroid in self.asteroidlist:
-            astroid.draw_letter(self.inputs)
+            astroid.draw_letter()
 
         # Draw foreground
         if self.tracker.gethp() == 6:
@@ -72,8 +71,6 @@ class Director(arcade.View):
         elif self.tracker.gethp() < 1:
             self.foreground = arcade.load_texture(WORKING_DIRECTORY+"\game\images\shipshellH0.png")
         
-        
-
         arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.foreground)
 
         # Update text on screen
@@ -84,9 +81,7 @@ class Director(arcade.View):
     # Spawns a new laser pointed at the first asteroid in the list
     def on_key_press(self, symbol, modifer):
         # Waches for the "word matched" signal from the inputs object
-        if self.inputs.pressed(symbol, modifer):
-            self.asteroidlist.append(Astroid(2))
-            self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
+        if self.inputs.pressed(symbol, modifer) and len(self.asteroidlist) > 0: self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
             
             
     # Check for key release
@@ -104,14 +99,14 @@ class Director(arcade.View):
 
         # Check for collisions with the laser and the asteroids
         # Delete both if there is contact
-        if (len(self.laserlist) > 0):
+        if (len(self.laserlist) > 0 and len(self.asteroidlist) > 0):
             if arcade.check_for_collision(self.asteroidlist[0], self.laserlist[0]):
                 self.laserlist.pop(0)
                 self.asteroidlist.pop(0)
                 self.tracker.addscore()
         
         if len(self.asteroidlist) <= 0:
-            self.asteroidlist.append(Astroid(2))
+            self.asteroidlist.append(Astroid(2, self.inputs))
 
         if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
             self.asteroidlist.pop(0)
@@ -120,3 +115,7 @@ class Director(arcade.View):
             else:
                 # Wait 2 seconds
                 self.window.show_view(self.gameover)
+
+        for laser in self.laserlist:
+            if laser.get_pos()[0] > SCREEN_WIDTH or laser.get_pos()[0] < 0:     laser.remove_from_sprite_lists()
+            if laser.get_pos()[1] > SCREEN_HEIGHT or laser.get_pos()[1] < 0:    laser.remove_from_sprite_lists()
