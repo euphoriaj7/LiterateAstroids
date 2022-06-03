@@ -81,7 +81,7 @@ class Director(arcade.View):
     # Spawns a new laser pointed at the first asteroid in the list
     def on_key_press(self, symbol, modifer):
         # Waches for the "word matched" signal from the inputs object
-        if self.inputs.pressed(symbol, modifer) and len(self.spritelist) > 0: self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
+        if self.inputs.pressed(symbol, modifer) and len(self.asteroidlist) > 0: self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
             
             
     # Check for key release
