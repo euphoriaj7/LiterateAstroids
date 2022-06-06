@@ -114,6 +114,7 @@ class Director(arcade.View):
                 self.tracker.minushp()
             else:
                 # Wait 2 seconds
+                self.gameover.gather(str(self.tracker.getscore()))
                 self.window.show_view(self.gameover)
 
         for laser in self.laserlist:
