@@ -74,7 +74,7 @@ class Director(arcade.View):
         arcade.draw_lrwh_rectangle_textured(0,0,SCREEN_WIDTH, SCREEN_HEIGHT, self.foreground)
 
         # Update text on screen
-        self.inputs.draw(self.tracker.getscore())
+        self.inputs.draw(str(self.tracker.getscore()))
 
     # Check for key press and for is_match signal
     # Spawns new asteroid with new word if there is a match
