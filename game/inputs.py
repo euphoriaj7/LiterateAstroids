@@ -36,7 +36,7 @@ class Inputs(arcade.Sprite):
     # \\\ DRAW ///
     # Displays the current status of the input string on the screen
     # Displays the active word to match TEST CODE
-    def draw(self):
+    def draw(self, score):
         # Display input string
         arcade.draw_text(
             self.input,
@@ -46,7 +46,7 @@ class Inputs(arcade.Sprite):
             30, font_name="Kenney Pixel")
         # Display active word
         arcade.draw_text(
-            self.active_word,
+            score,
             CENTER_X + 320,
             CENTER_Y - 335,
             arcade.color.GREEN,
