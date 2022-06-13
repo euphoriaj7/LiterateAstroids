@@ -15,12 +15,10 @@ class Inputs(arcade.Sprite):
         super().__init__(None, SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 2
         self.center_y = SCREEN_HEIGHT / 2
-        self.word_list = None
-        self.data = Data()
-        self.active_word = ""
         self.input = ""
         self.is_backspace = False
         self.backspace_counter = 0
+<<<<<<< HEAD
         self.get_word()
 
     # \\\ GET WORD //
@@ -34,6 +32,8 @@ class Inputs(arcade.Sprite):
     
     def get_active_word(self):
         return self.active_word
+=======
+>>>>>>> 6be96847eaa5dab05e219870ace2f14537c98ab7
     
     # \\\ DRAW ///
     # Displays the current status of the input string on the screen
@@ -69,7 +69,7 @@ class Inputs(arcade.Sprite):
 
     # \\\ PRESSED ///
     # Watches for all keyboard inputs and performs actions based on their value
-    def pressed(self, symbol, modifier):
+    def pressed(self, symbol, modifier, active_word):
         # For each key input in the alphabet, that appropriate character will
         # append to the input string. If shift is held down, letters will#
         # append as capital letters.
@@ -136,9 +136,8 @@ class Inputs(arcade.Sprite):
         # If enter, check vs active_word
         # Clear input and get a new word if they match
         if symbol == arcade.key.ENTER:
-            if self.active_word == self.input:
+            if active_word == self.input and active_word != "":
                 self.input = ""
-                self.get_word()
                 return True
 
         # Signal the update function to start deleting characters

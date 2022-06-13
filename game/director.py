@@ -1,6 +1,5 @@
 #from LiterateAstroids.game.constants import CENTER_X, CENTER_Y
-from ast import In
-from distutils.spawn import spawn
+from pickle import NONE
 import arcade
 import math
 import random
@@ -14,6 +13,7 @@ from game.constants import (
 from game.astroid import Astroid
 from game.laser import Laser
 from game.ship import Ship
+from game.data import Data
 from game.inputs import Inputs
 from game.tracker import Tracker
 from game.gameover import GameOver
@@ -27,10 +27,17 @@ class Director(arcade.View):
         self.laserlist = None
         self.ship = None
         self.astroid = None
+        self.data = Data()
         self.inputs = Inputs()
         self.tracker = Tracker()
         self.gameover = GameOver()
         self.text = None
+        self.spawning = False   # DO NOT CHANGE
+        self.spawn_counter = 1  # DO NOT CHANGE
+
+        # ASTEROID SPAWN PARAMETERS
+        self.spawn_amount =     5
+        self.spawn_interval =   60
         
     def setup(self):
         self.background = arcade.load_texture(WORKING_DIRECTORY+"\game\images\stars.png")
@@ -52,8 +59,10 @@ class Director(arcade.View):
         self.laserlist.draw()
         self.spritelist.draw()
         self.asteroidlist.draw()
-        for astroid in self.asteroidlist:
-            astroid.draw_letter()
+        # Makes the first text in the list red, and the rest green
+        for i in range(len(self.asteroidlist)):
+            if i == 0:  self.asteroidlist[i].draw_letter(arcade.color.RED)
+            else:       self.asteroidlist[i].draw_letter(arcade.color.GREEN)
 
         # Draw foreground
         if self.tracker.gethp() == 6:
@@ -81,7 +90,9 @@ class Director(arcade.View):
     # Spawns a new laser pointed at the first asteroid in the list
     def on_key_press(self, symbol, modifer):
         # Waches for the "word matched" signal from the inputs object
-        if self.inputs.pressed(symbol, modifer) and len(self.asteroidlist) > 0: self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
+        if len(self.asteroidlist) > 0:  word = self.asteroidlist[0].get_word()
+        else:                           word = ""
+        if self.inputs.pressed(symbol, modifer, word) and len(self.asteroidlist) > 0: self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
             
             
     # Check for key release
@@ -105,9 +116,16 @@ class Director(arcade.View):
                 self.asteroidlist.pop(0)
                 self.tracker.addscore()
         
-        if len(self.asteroidlist) <= 0:
-            self.asteroidlist.append(Astroid(2, self.inputs))
+        # spawn_counter is used to spawn multiple asteroids with a 30 tick gap
+        if len(self.asteroidlist) <= 0 and self.spawning == False:
+            self.spawning = True
+            self.spawn_counter = self.spawn_interval * self.spawn_amount
+        if self.spawn_counter % self.spawn_interval == 0:
+            self.asteroidlist.append(Astroid(2, self.data.random_word()))
+        if self.spawn_counter >= 2:  self.spawn_counter -= 1
+        if self.spawn_counter < 2: self.spawning = False
 
+<<<<<<< HEAD
         if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
             self.asteroidlist.pop(0)
             if self.tracker.gethp() > 1:
@@ -116,6 +134,16 @@ class Director(arcade.View):
                 # Wait 2 seconds
                 self.gameover.gather(str(self.tracker.getscore()))
                 self.window.show_view(self.gameover)
+=======
+        if len(self.asteroidlist) > 0 and len(self.asteroidlist) > 0:
+            if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
+                self.asteroidlist.pop(0)
+                if self.tracker.gethp() > 1:
+                    self.tracker.minushp()
+                else:
+                    # Wait 2 seconds
+                    self.window.show_view(self.gameover)
+>>>>>>> 6be96847eaa5dab05e219870ace2f14537c98ab7
 
         for laser in self.laserlist:
             if laser.get_pos()[0] > SCREEN_WIDTH or laser.get_pos()[0] < 0:     laser.remove_from_sprite_lists()
