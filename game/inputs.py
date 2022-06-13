@@ -19,7 +19,8 @@ class Inputs(arcade.Sprite):
         self.is_backspace = False
         self.backspace_counter = 0
 
-    
+    def get_input(self):
+        return self.input
     # \\\ DRAW ///
     # Displays the current status of the input string on the screen
     # Displays the active word to match TEST CODE

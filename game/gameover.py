@@ -9,9 +9,11 @@ class GameOver(arcade.View):
 
     def __init__(self):
         super().__init__()
+        self.input = ""
     
-    def gather(self, score):
+    def gather(self, score, inputs):
         self.fscore = score
+        self.inputs = inputs
 
     def on_show(self):
         arcade.set_background_color(arcade.color.BEIGE)
@@ -25,5 +27,9 @@ class GameOver(arcade.View):
         arcade.draw_text("Final Score: "+self.fscore, SCREEN_WIDTH / 13, SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40)
         arcade.draw_text("High Scores", SCREEN_WIDTH / 13, SCREEN_HEIGHT / 2, arcade.color.WHITE, 40)
         
+    def on_key_press(self, symbol, modifer):
         
-        arcade.draw_text("Add Name: "+"keyboard inputs", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, arcade.color.WHITE, 40)
+        words = self.inputs.pressed(symbol, modifer, "")
+
+
+        arcade.draw_text("Add Name: "+self.input, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, arcade.color.WHITE, 40)

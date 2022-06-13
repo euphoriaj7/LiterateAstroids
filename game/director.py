@@ -143,7 +143,7 @@ class Director(arcade.View):
                     self.tracker.minushp()
                 else:
                     # Wait 2 seconds
-                    self.gameover.gather(str(self.tracker.getscore()))
+                    self.gameover.gather(str(self.tracker.getscore()), self.inputs)
                     self.window.show_view(self.gameover)
 
 
