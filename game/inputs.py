@@ -18,22 +18,7 @@ class Inputs(arcade.Sprite):
         self.input = ""
         self.is_backspace = False
         self.backspace_counter = 0
-<<<<<<< HEAD
-        self.get_word()
 
-    # \\\ GET WORD //
-    # Sets the active word to a random word from the word list
-    def get_word(self): 
-        self.active_word = self.data.random_word()
-        self.active_word = self.active_word[:-1]    # It currently reads an extra space. This deletes that space
-
-    def get_input(self):
-        return self.input
-    
-    def get_active_word(self):
-        return self.active_word
-=======
->>>>>>> 6be96847eaa5dab05e219870ace2f14537c98ab7
     
     # \\\ DRAW ///
     # Displays the current status of the input string on the screen

@@ -125,16 +125,17 @@ class Director(arcade.View):
         if self.spawn_counter >= 2:  self.spawn_counter -= 1
         if self.spawn_counter < 2: self.spawning = False
 
-<<<<<<< HEAD
-        if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
-            self.asteroidlist.pop(0)
-            if self.tracker.gethp() > 1:
-                self.tracker.minushp()
-            else:
-                # Wait 2 seconds
-                self.gameover.gather(str(self.tracker.getscore()))
-                self.window.show_view(self.gameover)
-=======
+        # This came from morgan's branch 
+        
+        # if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
+        #     self.asteroidlist.pop(0)
+        #     if self.tracker.gethp() > 1:
+        #         self.tracker.minushp()
+        #     else:
+        #         # Wait 2 seconds
+                # self.gameover.gather(str(self.tracker.getscore()))
+        #         self.window.show_view(self.gameover)
+
         if len(self.asteroidlist) > 0 and len(self.asteroidlist) > 0:
             if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
                 self.asteroidlist.pop(0)
@@ -142,8 +143,9 @@ class Director(arcade.View):
                     self.tracker.minushp()
                 else:
                     # Wait 2 seconds
+                    self.gameover.gather(str(self.tracker.getscore()))
                     self.window.show_view(self.gameover)
->>>>>>> 6be96847eaa5dab05e219870ace2f14537c98ab7
+
 
         for laser in self.laserlist:
             if laser.get_pos()[0] > SCREEN_WIDTH or laser.get_pos()[0] < 0:     laser.remove_from_sprite_lists()
