@@ -1,4 +1,4 @@
-# functions 
+# functions
 # - words and get/setter
 from game.constants import (
     CENTER_X,
@@ -12,39 +12,45 @@ import arcade
 import math
 import random
 
+
 class Astroid(arcade.Sprite):
-    def __init__(self, speed, new_word): 
-        super().__init__(WORKING_DIRECTORY+"\game\images\meteor1.png", SHIP_SCALE)
+    def __init__(self, speed, new_word):
+        super().__init__(WORKING_DIRECTORY+"/game/images/meteor1.png", SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 3
         self.center_y = SCREEN_HEIGHT / 3
         self.spawn_asteroid(speed)
 
         # gets active word/letter from inputs
         self.word = new_word
-        self.word = self.word[:-1]      # It currently reads an extra space. This deletes that space
+        # It currently reads an extra space. This deletes that space
+        self.word = self.word[:-1]
 
     def get_word(self): return self.word
 
     def draw_letter(self, color):
-        # printing it in the screen 
+        # printing it in the screen
         arcade.draw_text(self.word, self.center_x, self.center_y, color,
-            30, font_name="Kenney Pixel")
+                         30, font_name="Kenney Pixel")
 
     # \\\ GET POS ///
     # Returns the current (x, y) coordinates
     def get_pos(self): return self.center_x, self.center_y
-    
+
     # \\\ SPAWN ASTEROID ///
     # Gets a random angle and spawns the asteroid at that angle and sets its veclocity towards
     # the center of the screen
     def spawn_asteroid(self, speed):
         # Randomly select the side the spawing will happen
-        side = random.randint(1,2)
+        side = random.randint(1, 2)
         spawn_radius = math.sqrt(CENTER_X**2 + CENTER_Y**2) + 30
 
         # Set a random spawn angle based on the side selected
-        if (side == 1): theta = random.uniform(math.atan2(-SCREEN_WIDTH,-SCREEN_HEIGHT), math.atan2(-SCREEN_WIDTH,SCREEN_HEIGHT))
-        else:           theta = random.uniform(math.atan2(SCREEN_WIDTH,-SCREEN_HEIGHT), math.atan2(SCREEN_WIDTH,SCREEN_HEIGHT))
+        if (side == 1):
+            theta = random.uniform(
+                math.atan2(-SCREEN_WIDTH, -SCREEN_HEIGHT), math.atan2(-SCREEN_WIDTH, SCREEN_HEIGHT))
+        else:
+            theta = random.uniform(math.atan2(
+                SCREEN_WIDTH, -SCREEN_HEIGHT), math.atan2(SCREEN_WIDTH, SCREEN_HEIGHT))
 
         # Set the spawn coordinates based on the spawn angle
         self.center_x = CENTER_X - spawn_radius * math.sin(theta)
@@ -55,5 +61,5 @@ class Astroid(arcade.Sprite):
         self.change_y = speed * math.sin(theta - (math.pi/2))
 
         # Set rotation to a random spin one way or the other
-        self.angle = random.randint(-180, 180) 
-        self.change_angle = random.uniform(-1,1)
+        self.angle = random.randint(-180, 180)
+        self.change_angle = random.uniform(-1, 1)
