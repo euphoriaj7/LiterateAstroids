@@ -1,4 +1,4 @@
-# points/score and will need key board 
+# points/score and will need key board
 from game.constants import (
     CENTER_X,
     CENTER_Y,
@@ -10,9 +10,10 @@ from game.constants import (
 import arcade
 import math
 
+
 class Laser(arcade.Sprite):
-    def __init__(self, speed, ship_rotation): 
-        super().__init__(WORKING_DIRECTORY+"\game\images\laser.png", SHIP_SCALE/20)
+    def __init__(self, speed, ship_rotation):
+        super().__init__(WORKING_DIRECTORY+"/game/images/laser.png", SHIP_SCALE/20)
         self.center_x = SCREEN_WIDTH / 3
         self.center_y = SCREEN_HEIGHT / 3
         self.draw()
@@ -37,4 +38,4 @@ class Laser(arcade.Sprite):
         self.change_y = speed * math.sin(theta + (math.pi/2))
 
         # Convert angle back to radians
-        self.angle = theta * 180 /math.pi
+        self.angle = theta * 180 / math.pi
