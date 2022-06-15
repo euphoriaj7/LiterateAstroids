@@ -37,8 +37,8 @@ class Director(arcade.View):
         self.spawn_counter = 1  # DO NOT CHANGE
 
         # ASTEROID SPAWN PARAMETERS
-        self.spawn_amount = 5
-        self.spawn_interval = 60
+        self.spawn_amount = 3
+        self.spawn_interval = 100
 
     def setup(self):
         self.background = arcade.load_texture(
