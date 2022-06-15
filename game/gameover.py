@@ -38,8 +38,7 @@ class GameOver(arcade.View):
         
         self.inputs.pressed(symbol, modifer, '')
         if symbol == arcade.key.ENTER:
-            print('enter is pressed')
-            #submit name(self.inputs.get_input()) and score(self.fscore) to firestore
+            update_database(self.inputs.get_input(), self.fscore)
             #update highscores list
             #stop player from doing more input?
 
@@ -48,3 +47,11 @@ class GameOver(arcade.View):
     
     def on_update(self, delta_time):
         self.inputs.update()
+
+#           ||
+#           ||
+#          \  /
+#           \/
+    def update_database(name, score):
+        #submit name and score) to firestore
+
