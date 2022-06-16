@@ -5,12 +5,12 @@ from game.constants import (
     SCREEN_WIDTH
 )
 
-
 class GameOver(arcade.View):
 
     def __init__(self):
         super().__init__()
-        self.input = ""
+        self.words = ""
+        self.enter_name = True
 
     def gather(self, score, inputs):
         self.fscore = score
@@ -32,10 +32,29 @@ class GameOver(arcade.View):
                          13, SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40)
         arcade.draw_text("High Scores", SCREEN_WIDTH / 13,
                          SCREEN_HEIGHT / 2, arcade.color.WHITE, 40)
-
+        arcade.draw_text("Add Name: "+ str(self.inputs.get_input()), SCREEN_WIDTH / 2,
+                    SCREEN_HEIGHT / 2, arcade.color.WHITE, 40)
+    
+    
+        
     def on_key_press(self, symbol, modifer):
+        if self.enter_name == True:
+            self.inputs.pressed(symbol, modifer, '')
+            if symbol == arcade.key.ENTER:
+                print('enter is entered')
+                #update_database(self.inputs.get_input(), self.fscore)
+                #stop player from doing more input?   
+                self.enter_name = False 
+    def on_key_release(self, symbol, modifier): self.inputs.released(
+        symbol, modifier)
+    
+    def on_update(self, delta_time):
+        self.inputs.update()
 
-        words = self.inputs.pressed(symbol, modifer, "")
+#           ||
+#           ||
+#          \  /
+#           \/
+    #def update_database(name, score):
+        #submit name and score) to firestore
 
-        arcade.draw_text("Add Name: "+self.input, SCREEN_WIDTH / 2,
-                         SCREEN_HEIGHT / 2, arcade.color.WHITE, 40)
