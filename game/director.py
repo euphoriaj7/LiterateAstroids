@@ -11,12 +11,14 @@ from game.constants import (
     WORKING_DIRECTORY,
 )
 from game.astroid import Astroid
+from game.db_connect import DB_Connect
 from game.laser import Laser
 from game.ship import Ship
 from game.data import Data
 from game.inputs import Inputs
 from game.tracker import Tracker
 from game.gameover import GameOver
+from game.db_connect import DB_Connect
 
 
 class Director(arcade.View):
@@ -32,6 +34,7 @@ class Director(arcade.View):
         self.inputs = Inputs()
         self.tracker = Tracker()
         self.gameover = GameOver()
+        self.db = DB_Connect()
         self.text = None
         self.spawning = False   # DO NOT CHANGE
         self.spawn_counter = 1  # DO NOT CHANGE
@@ -166,9 +169,11 @@ class Director(arcade.View):
                     self.tracker.minushp()
                 else:
                     # Wait 2 seconds
-                    self.gameover.gather(
-                        str(self.tracker.getscore()), self.inputs)
+                    self.gameover.gather(int(self.tracker.getscore()), self.inputs, self.db)
                     self.window.show_view(self.gameover)
+                    
+
+
 
         for laser in self.laserlist:
             if laser.get_pos()[0] > SCREEN_WIDTH or laser.get_pos()[0] < 0:
