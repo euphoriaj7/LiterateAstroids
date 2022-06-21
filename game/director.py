@@ -147,11 +147,9 @@ class Director(arcade.View):
             self.spawning = True
             self.spawn_counter = self.spawn_interval * self.spawn_amount
         if self.spawn_counter % self.spawn_interval == 0:
-            self.asteroidlist.append(Astroid(2, self.data.random_word()))
-        if self.spawn_counter >= 2:
-            self.spawn_counter -= 1
-        if self.spawn_counter < 2:
-            self.spawning = False
+            self.asteroidlist.append(Astroid(2, self.data.random_word(self.tracker.getscore())))
+        if self.spawn_counter >= 2:  self.spawn_counter -= 1
+        if self.spawn_counter < 2: self.spawning = False
 
 
         if len(self.asteroidlist) > 0 and len(self.asteroidlist) > 0:
