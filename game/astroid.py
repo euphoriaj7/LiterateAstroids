@@ -11,6 +11,7 @@ from game.constants import (
 import arcade
 import math
 import random
+from game.boom import Boom
 
 
 class Astroid(arcade.Sprite):
@@ -63,3 +64,14 @@ class Astroid(arcade.Sprite):
         # Set rotation to a random spin one way or the other
         self.angle = random.randint(-180, 180)
         self.change_angle = random.uniform(-1, 1)
+    
+
+
+    '''
+        def die(self):
+            print('die')
+            self.boom = Boom()
+            self.boom.center_y = self.center_y
+            self.boom.center_x = self.center_x
+            self.spritelist.append(self.boom)
+            self.kill()'''

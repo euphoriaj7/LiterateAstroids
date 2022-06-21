@@ -19,6 +19,7 @@ from game.inputs import Inputs
 from game.tracker import Tracker
 from game.gameover import GameOver
 from game.db_connect import DB_Connect
+from game.boom import Boom
 
 
 class Director(arcade.View):
@@ -35,6 +36,7 @@ class Director(arcade.View):
         self.tracker = Tracker()
         self.gameover = GameOver()
         self.db = DB_Connect()
+        self.boom = Boom()
         self.text = None
         self.spawning = False   # DO NOT CHANGE
         self.spawn_counter = 1  # DO NOT CHANGE
@@ -151,16 +153,6 @@ class Director(arcade.View):
         if self.spawn_counter < 2:
             self.spawning = False
 
-        # This came from morgan's branch
-
-        # if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
-        #     self.asteroidlist.pop(0)
-        #     if self.tracker.gethp() > 1:
-        #         self.tracker.minushp()
-        #     else:
-        #         # Wait 2 seconds
-            # self.gameover.gather(str(self.tracker.getscore()))
-        #         self.window.show_view(self.gameover)
 
         if len(self.asteroidlist) > 0 and len(self.asteroidlist) > 0:
             if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
@@ -168,8 +160,14 @@ class Director(arcade.View):
                 if self.tracker.gethp() > 1:
                     self.tracker.minushp()
                 else:
-                    # Wait 2 seconds
-                    self.gameover.gather(int(self.tracker.getscore()), self.inputs, self.db)
+                    self.boom.center_y = self.ship.center_y
+                    self.boom.center_x = self.ship.center_x
+                    self.spritelist.append(self.boom)
+                    # Wait 1 seconds
+                    self.spritelist.pop(-1)
+
+                    self.gameover.gather(
+                        str(self.tracker.getscore()), self.inputs, self.db)
                     self.window.show_view(self.gameover)
                     
 
