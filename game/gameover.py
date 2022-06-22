@@ -13,6 +13,7 @@ class GameOver(arcade.View):
         self.enter_name = True
         self.db = None
         self.fscore = None
+        self.result = ""
 
     def gather(self, score, inputs, db):
         self.fscore = score
@@ -33,11 +34,13 @@ class GameOver(arcade.View):
         arcade.draw_text("Literate Astroids", SCREEN_WIDTH / 3,
                          SCREEN_HEIGHT - SCREEN_HEIGHT / 6, arcade.color.WHITE, 50)
         arcade.draw_text("Final Score: "+ str(self.fscore), SCREEN_WIDTH /
-                         13, SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40)
+                         2, SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40)
         arcade.draw_text("High Scores", SCREEN_WIDTH / 13,
-                         SCREEN_HEIGHT / 2, arcade.color.WHITE, 40)
+                         SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40)
         arcade.draw_text("Add Name: "+ str(self.inputs.get_input()), SCREEN_WIDTH / 2,
                     SCREEN_HEIGHT / 2, arcade.color.WHITE, 40)
+        arcade.draw_text(self.result, SCREEN_WIDTH / 2,
+                    SCREEN_HEIGHT / 4, arcade.color.WHITE, 40)
     
     
         
@@ -45,23 +48,14 @@ class GameOver(arcade.View):
         if self.enter_name == True:
             self.inputs.pressed(symbol, modifer, '')
             if symbol == arcade.key.ENTER:
-                self.db.add_new_score(self.inputs.get_input(), self.fscore)
+                self.result = str(self.db.add_new_score(self.inputs.get_input(), self.fscore))
                 #stop player from doing more input?   
-                self.enter_name = False 
+                self.enter_name = False
+                
+
 
     def on_key_release(self, symbol, modifier): self.inputs.released(
         symbol, modifier)
     
     def on_update(self, delta_time):
         self.inputs.update()
-
-#           ||
-#           ||
-#          \  /
-#           \/
-    # def update_database(self):
-    #    self.db.initialize_firestore()
-
-
-
-

@@ -40,12 +40,11 @@ class DB_Connect():
             # Update the dictionary with the new quanity and then save the 
             # updated dictionary to Firestore.
             if data['score'] < str(score):
-                print('new high score!')
                 data["score"] = str(score)
                 self.db.collection("literateAstroids").document(name).set(data)
+                return 'New High Score!'
             else:
-                print('Eh...not your best score...')
-            return
+                return 'Eh...not your best score...'
 
         # Build a dictionary to hold the contents of the firestore document.
         data = {"name" : name, 
