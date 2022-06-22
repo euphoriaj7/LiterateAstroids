@@ -158,11 +158,12 @@ class Director(arcade.View):
                 if self.tracker.gethp() > 1:
                     self.tracker.minushp()
                 else:
+                    self.tracker.minushp()
                     self.boom.center_y = self.ship.center_y
                     self.boom.center_x = self.ship.center_x
                     self.spritelist.append(self.boom)
                     # Wait 1 seconds
-                    self.spritelist.pop(-1)
+                    #self.spritelist.pop(-1)
 
                     self.gameover.gather(
                         str(self.tracker.getscore()), self.inputs, self.db)
