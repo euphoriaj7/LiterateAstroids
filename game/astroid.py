@@ -33,6 +33,7 @@ class Astroid(arcade.Sprite):
         # printing it in the screen
         arcade.draw_text(self.word, self.center_x, self.center_y, color,
                          30, font_name=FONT)
+        print(FONT)
 
     # \\\ GET POS ///
     # Returns the current (x, y) coordinates
