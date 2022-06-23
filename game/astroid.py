@@ -26,14 +26,14 @@ class Astroid(arcade.Sprite):
         self.word = new_word
         # It currently reads an extra space. This deletes that space
         self.word = self.word[:-1]
+        self.FONT = FONT
 
     def get_word(self): return self.word
 
     def draw_letter(self, color):
         # printing it in the screen
-        arcade.draw_text(self.word, self.center_x, self.center_y, color,
-                         30, font_name=FONT)
-        print(FONT)
+        arcade.draw_text(self.word, self.center_x, self.center_y, color, 30, font_name=FONT)
+        # print(FONT)
 
     # \\\ GET POS ///
     # Returns the current (x, y) coordinates

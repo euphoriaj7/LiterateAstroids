@@ -15,6 +15,7 @@ class GameOver(arcade.View):
         self.db = None
         self.fscore = None
         self.result = ""
+        self.FONT = FONT
 
     def gather(self, score, inputs, db):
         self.fscore = score

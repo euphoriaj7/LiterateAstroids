@@ -20,6 +20,7 @@ class Inputs(arcade.Sprite):
         self.input = ""
         self.is_backspace = False
         self.backspace_counter = 0
+        self.FONT = FONT
 
     def get_input(self):
         return self.input
