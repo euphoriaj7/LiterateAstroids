@@ -7,6 +7,7 @@ from game.constants import (
     SCREEN_HEIGHT,
     SCREEN_WIDTH,
     WORKING_DIRECTORY,
+    FONT
 )
 import arcade
 import math
@@ -31,7 +32,7 @@ class Astroid(arcade.Sprite):
     def draw_letter(self, color):
         # printing it in the screen
         arcade.draw_text(self.word, self.center_x, self.center_y, color,
-                         30, font_name="Kenney Pixel")
+                         30, font_name=FONT)
 
     # \\\ GET POS ///
     # Returns the current (x, y) coordinates
