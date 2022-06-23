@@ -1,3 +1,4 @@
+# from tkinter.font import Font
 from game.data import Data
 from game.constants import (
     SCREEN_WIDTH,
@@ -5,6 +6,7 @@ from game.constants import (
     SHIP_SCALE,
     CENTER_X,
     CENTER_Y,
+    # FONT
 )
 
 import arcade
@@ -18,6 +20,7 @@ class Inputs(arcade.Sprite):
         self.input = ""
         self.is_backspace = False
         self.backspace_counter = 0
+        # self.FONT = "Kenny Pixel"
 
     def get_input(self):
         return self.input
@@ -31,14 +34,14 @@ class Inputs(arcade.Sprite):
             CENTER_X - 200,
             CENTER_Y - 300,
             arcade.color.GREEN,
-            30, font_name="Kenney Pixel")
+            30, font_name="Kenny Pixel")
         # Display active word
         arcade.draw_text(
             score,
             CENTER_X + 320,
             CENTER_Y - 335,
             arcade.color.GREEN,
-            30, font_name="Kenney Pixel")
+            30, font_name="Kenny Pixel")
     
     # \\\ Update ///
     # Watches for signals related to "held down" keys and performs related code

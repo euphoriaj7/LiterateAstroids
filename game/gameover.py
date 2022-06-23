@@ -2,7 +2,8 @@ import arcade
 from game.constants import (
     WORKING_DIRECTORY,
     SCREEN_HEIGHT,
-    SCREEN_WIDTH
+    SCREEN_WIDTH,
+    # FONT
 )
 
 class GameOver(arcade.View):
@@ -14,6 +15,7 @@ class GameOver(arcade.View):
         self.db = None
         self.fscore = None
         self.result = ""
+        self.FONT = "Kenny Pixel"
 
     def gather(self, score, inputs, db):
         self.fscore = score
