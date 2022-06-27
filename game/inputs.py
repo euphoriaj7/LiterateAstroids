@@ -1,3 +1,4 @@
+# from tkinter.font import Font
 from game.data import Data
 from game.constants import (
     SCREEN_WIDTH,
@@ -5,6 +6,7 @@ from game.constants import (
     SHIP_SCALE,
     CENTER_X,
     CENTER_Y,
+    FONT
 )
 
 import arcade
@@ -19,7 +21,8 @@ class Inputs(arcade.Sprite):
         self.is_backspace = False
         self.backspace_counter = 0
 
-    
+    def get_input(self):
+        return self.input
     # \\\ DRAW ///
     # Displays the current status of the input string on the screen
     # Displays the active word to match TEST CODE
@@ -30,14 +33,14 @@ class Inputs(arcade.Sprite):
             CENTER_X - 200,
             CENTER_Y - 300,
             arcade.color.GREEN,
-            30, font_name="Kenney Pixel")
+            30, font_name=(FONT,))
         # Display active word
         arcade.draw_text(
             score,
             CENTER_X + 320,
             CENTER_Y - 335,
             arcade.color.GREEN,
-            30, font_name="Kenney Pixel")
+            30, font_name=(FONT,))
     
     # \\\ Update ///
     # Watches for signals related to "held down" keys and performs related code
@@ -136,9 +139,8 @@ class Inputs(arcade.Sprite):
             if symbol == arcade.key.Z: self.input = self.input + '0'
 
 
-        # On SPACE, append the space character to the input string
-        if symbol == arcade.key.SPACE: self.input = self.input + ' '
-        
+            # On SPACE, append the space character to the input string
+            if symbol == arcade.key.SPACE: self.input = self.input + ' '
         # If enter, check vs active_word
         # Clear input and get a new word if they match
         if symbol == arcade.key.ENTER:

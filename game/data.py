@@ -2,14 +2,16 @@ import random
 from game.constants import WORKING_DIRECTORY
 
 # // have to be this way
+
+
 class Data():
 
     def __init__(self):
         self.list_of_words = []
 
-    #to read in txt file into list_of_words
+    # to read in txt file into list_of_words
     def read_words(self):
-        file = open(WORKING_DIRECTORY+"\game\words.txt", "r")
+        file = open(WORKING_DIRECTORY+"/game/words.txt", "r")
         for words in file:
             self.list_of_words.append(words)
 

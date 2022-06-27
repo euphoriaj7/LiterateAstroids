@@ -2,7 +2,7 @@
 class Tracker():
 
     def __init__(self):
-        self.health = 1
+        self.health = 3
         self.score = 0
 
     def gethp(self):
