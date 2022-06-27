@@ -7,7 +7,7 @@ from game.constants import (
     SCREEN_HEIGHT,
     SCREEN_WIDTH,
     WORKING_DIRECTORY,
-    # FONT
+    FONT
 )
 import arcade
 import math
@@ -26,13 +26,12 @@ class Astroid(arcade.Sprite):
         self.word = new_word
         # It currently reads an extra space. This deletes that space
         self.word = self.word[:-1]
-        # self.FONT = "Kenny Pixel"
 
     def get_word(self): return self.word
 
     def draw_letter(self, color):
         # printing it in the screen
-        arcade.draw_text(self.word, self.center_x, self.center_y, color, 30, font_name="Kenny Pixel")
+        arcade.draw_text(self.word, self.center_x, self.center_y, color, 30, font_name=(FONT,))
         # print(FONT)
 
     # \\\ GET POS ///

@@ -6,7 +6,7 @@ from game.constants import (
     SHIP_SCALE,
     CENTER_X,
     CENTER_Y,
-    # FONT
+    FONT
 )
 
 import arcade
@@ -20,7 +20,6 @@ class Inputs(arcade.Sprite):
         self.input = ""
         self.is_backspace = False
         self.backspace_counter = 0
-        # self.FONT = "Kenny Pixel"
 
     def get_input(self):
         return self.input
@@ -34,14 +33,14 @@ class Inputs(arcade.Sprite):
             CENTER_X - 200,
             CENTER_Y - 300,
             arcade.color.GREEN,
-            30, font_name="Kenny Pixel")
+            30, font_name=(FONT,))
         # Display active word
         arcade.draw_text(
             score,
             CENTER_X + 320,
             CENTER_Y - 335,
             arcade.color.GREEN,
-            30, font_name="Kenny Pixel")
+            30, font_name=(FONT,))
     
     # \\\ Update ///
     # Watches for signals related to "held down" keys and performs related code
