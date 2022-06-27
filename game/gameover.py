@@ -2,7 +2,8 @@ import arcade
 from game.constants import (
     WORKING_DIRECTORY,
     SCREEN_HEIGHT,
-    SCREEN_WIDTH
+    SCREEN_WIDTH,
+    # FONT
 )
 
 class GameOver(arcade.View):
@@ -14,6 +15,7 @@ class GameOver(arcade.View):
         self.db = None
         self.fscore = None
         self.result = ""
+        self.FONT = "Kenny Pixel"
 
     def gather(self, score, inputs, db):
         self.fscore = score
@@ -32,15 +34,15 @@ class GameOver(arcade.View):
             0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, self.end)
 
         arcade.draw_text("Literate Astroids", SCREEN_WIDTH / 3,
-                         SCREEN_HEIGHT - SCREEN_HEIGHT / 6, arcade.color.WHITE, 50)
+                         SCREEN_HEIGHT - SCREEN_HEIGHT / 6, arcade.color.WHITE, 50, font_name="Kenny Pixel Square")
         arcade.draw_text("Final Score: "+ str(self.fscore), SCREEN_WIDTH /
-                         2, SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40)
+                         2, SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40, font_name="Kenny Pixel Square")
         arcade.draw_text("High Scores", SCREEN_WIDTH / 13,
-                         SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40)
+                         SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40, font_name="Kenny Pixel Square")
         arcade.draw_text("Add Name: "+ str(self.inputs.get_input()), SCREEN_WIDTH / 2,
-                    SCREEN_HEIGHT / 2, arcade.color.WHITE, 40)
+                    SCREEN_HEIGHT / 2, arcade.color.WHITE, 40, font_name="Kenny Pixel Square")
         arcade.draw_text(self.result, SCREEN_WIDTH / 2,
-                    SCREEN_HEIGHT / 4, arcade.color.WHITE, 40)
+                    SCREEN_HEIGHT / 4, arcade.color.WHITE, 40, font_name="Kenny Pixel Square")
     
     
         
