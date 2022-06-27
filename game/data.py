@@ -18,8 +18,14 @@ class Data():
         # adding levels
         # 197 - word with tree letters and under
         # 26 - single letters
-        # 227 - four letter words 
-        if score > 45:
+        # 227 - four letter words
+        if score > 60:
+            high_word = 257
+            low_word = 198
+        elif score > 55:
+            high_word = 247
+            low_word = 26
+        elif score > 45:
             high_word = 227
             low_word = 26
         elif score > 30:

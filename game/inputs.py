@@ -86,6 +86,16 @@ class Inputs(arcade.Sprite):
             if symbol == arcade.key.X: self.input = self.input + 'X'
             if symbol == arcade.key.Y: self.input = self.input + 'Y'
             if symbol == arcade.key.Z: self.input = self.input + 'Z'
+            if symbol == arcade.key.Z: self.input = self.input + '!'
+            if symbol == arcade.key.Z: self.input = self.input + '@'
+            if symbol == arcade.key.Z: self.input = self.input + '#'
+            if symbol == arcade.key.Z: self.input = self.input + '$'
+            if symbol == arcade.key.Z: self.input = self.input + '%'
+            if symbol == arcade.key.Z: self.input = self.input + '^'
+            if symbol == arcade.key.Z: self.input = self.input + '&'
+            if symbol == arcade.key.Z: self.input = self.input + '*'
+            if symbol == arcade.key.Z: self.input = self.input + '('
+            if symbol == arcade.key.Z: self.input = self.input + ')'
         # LOWERCASE
         else:
             if symbol == arcade.key.A: self.input = self.input + 'a'
@@ -114,6 +124,17 @@ class Inputs(arcade.Sprite):
             if symbol == arcade.key.X: self.input = self.input + 'x'
             if symbol == arcade.key.Y: self.input = self.input + 'y'
             if symbol == arcade.key.Z: self.input = self.input + 'z'
+            if symbol == arcade.key.Z: self.input = self.input + '1'
+            if symbol == arcade.key.Z: self.input = self.input + '2'
+            if symbol == arcade.key.Z: self.input = self.input + '3'
+            if symbol == arcade.key.Z: self.input = self.input + '4'
+            if symbol == arcade.key.Z: self.input = self.input + '5'
+            if symbol == arcade.key.Z: self.input = self.input + '6'
+            if symbol == arcade.key.Z: self.input = self.input + '7'
+            if symbol == arcade.key.Z: self.input = self.input + '8'
+            if symbol == arcade.key.Z: self.input = self.input + '9'
+            if symbol == arcade.key.Z: self.input = self.input + '0'
+
 
         # On SPACE, append the space character to the input string
         if symbol == arcade.key.SPACE: self.input = self.input + ' '
