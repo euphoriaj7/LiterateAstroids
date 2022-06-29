@@ -45,6 +45,8 @@ class DB_Connect():
                 return 'New High Score!'
             else:
                 return 'Eh...not your best score...'
+        else:
+            return "Great First Score!"
 
         # Build a dictionary to hold the contents of the firestore document.
         data = {"name" : name, 
