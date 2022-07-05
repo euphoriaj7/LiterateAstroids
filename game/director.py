@@ -36,7 +36,6 @@ class Director(arcade.View):
         self.tracker = Tracker()
         self.gameover = GameOver()
         self.db = DB_Connect()
-        self.boom = Boom()
         self.text = None
         self.spawning = False   # DO NOT CHANGE
         self.spawn_counter = 1  # DO NOT CHANGE
