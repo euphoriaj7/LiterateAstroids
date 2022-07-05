@@ -32,19 +32,20 @@ class GameOver(arcade.View):
         arcade.draw_lrwh_rectangle_textured(
             0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, self.end)
 
-        arcade.draw_text("Literate Astroids", SCREEN_WIDTH / 3,
-                         SCREEN_HEIGHT - SCREEN_HEIGHT / 6, arcade.color.WHITE, 50, font_name=(FONT,))
+        arcade.draw_text("Literate Astroids", SCREEN_WIDTH / 2,
+                         SCREEN_HEIGHT - SCREEN_HEIGHT / 6, arcade.color.WHITE, 50, anchor_x="center", font_name=(FONT,))
         arcade.draw_text("Final Score: "+ str(self.fscore), SCREEN_WIDTH /
-                         2, SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40, font_name=(FONT,))
-        arcade.draw_text("High Scores", SCREEN_WIDTH / 13,
-                         SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40, font_name=(FONT,))
-        arcade.draw_text("Add Name: "+ str(self.inputs.get_input()), SCREEN_WIDTH / 2,
-                    SCREEN_HEIGHT / 2, arcade.color.WHITE, 40, font_name=(FONT,))
+                         2, SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
+        arcade.draw_text("High Scores", SCREEN_WIDTH / 4,
+                         SCREEN_HEIGHT / 2, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
+        arcade.draw_text("Enter your Username", SCREEN_WIDTH - SCREEN_WIDTH / 4,
+                    SCREEN_HEIGHT / 2, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
+        arcade.draw_text("-> " + str(self.inputs.get_input()), SCREEN_WIDTH / 1.8,
+                    SCREEN_HEIGHT / 2 - 40, arcade.color.WHITE, 40, font_name=(FONT,))
         arcade.draw_text(self.result, SCREEN_WIDTH / 2,
                     SCREEN_HEIGHT / 4, arcade.color.WHITE, 40, font_name=(FONT,))
     
     
-        
     def on_key_press(self, symbol, modifer):
         if self.enter_name == True:
             self.inputs.pressed(symbol, modifer, '')
@@ -53,7 +54,6 @@ class GameOver(arcade.View):
                 #stop player from doing more input?   
                 self.enter_name = False
                 
-
 
     def on_key_release(self, symbol, modifier): self.inputs.released(
         symbol, modifier)
