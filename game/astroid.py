@@ -12,10 +12,9 @@ from game.constants import (
 import arcade
 import math
 import random
-from game.boom import Boom
-
 
 class Astroid(arcade.Sprite):
+    
     def __init__(self, speed, new_word):
         super().__init__(WORKING_DIRECTORY+"/game/images/meteor1.png", SHIP_SCALE)
         self.center_x = SCREEN_WIDTH / 3
@@ -26,6 +25,11 @@ class Astroid(arcade.Sprite):
         self.word = new_word
         # It currently reads an extra space. This deletes that space
         self.word = self.word[:-1]
+        # A uniquie id to make sure the correct asteroid is shot
+        self.id = random.randint(0,10000)
+
+    # returns the uniquie id for the asteroid
+    def get_id(self): return self.id
 
     def get_word(self): return self.word
 
