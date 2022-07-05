@@ -21,14 +21,14 @@ class Data():
         # 197 - word with tree letters and under
         # 26 - single letters
         # 227 - four letter words
-        if score > 60:
-            high_word = 257
-            low_word = 198
-        elif score > 55:
-            high_word = 247
-            low_word = 26
-        elif score > 45:
-            high_word = 227
+        # if score > 60:
+        #     high_word = 257
+        #     low_word = 198
+        # elif score > 55:
+        #     high_word = 247
+        #     low_word = 26
+        if score > 45:
+            high_word = 237
             low_word = 26
         elif score > 30:
             high_word = 197
@@ -39,6 +39,7 @@ class Data():
         else:
             low_word = 0
             high_word = 26
+            
         self.read_words()
         # low_word is the lowest number to read in file 
         # high _ word is the highest number to read in file 
