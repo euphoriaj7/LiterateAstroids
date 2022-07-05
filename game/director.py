@@ -138,11 +138,8 @@ class Director(arcade.View):
         # Delete both if there is contact
         if (len(self.laserlist) > 0 and len(self.asteroidlist) > 0):
             if arcade.check_for_collision(self.asteroidlist[0], self.laserlist[0]):
-                self.boom.center_y = self.asteroidlist[0].center_y
-                self.boom.center_x = self.asteroidlist[0].center_x
-                self.spritelist.append(self.boom)
-                # Wait 1 seconds
-                #self.spritelist.pop(-1)
+                self.explosionlist.append(Boom(self.asteroidlist[0].center_x, self.asteroidlist[0].center_y, 30))
+                self.spritelist[0].alpha = 0
                 self.laserlist.pop(0)
                 self.asteroidlist.pop(0)
                 self.tracker.addscore()
@@ -159,22 +156,17 @@ class Director(arcade.View):
 
         if len(self.asteroidlist) > 0 and len(self.asteroidlist) > 0:
             if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
-                self.boom.center_y = self.asteroidlist[0].center_y
-                self.boom.center_x = self.asteroidlist[0].center_x
-                self.spritelist.append(self.boom)
-                # Wait 1 seconds
-                #self.spritelist.pop(-1)
+                self.explosionlist.append(Boom(self.asteroidlist[0].center_x, self.asteroidlist[0].center_y, 30))
+                self.spritelist[0].alpha = 0
                 self.asteroidlist.pop(0)
                 if self.tracker.gethp() > 1:
                     self.tracker.minushp()
                 else:
                     self.inputs.input = ""
                     self.tracker.minushp()
-                    self.boom.center_y = self.ship.center_y
-                    self.boom.center_x = self.ship.center_x
-                    self.spritelist.append(self.boom)
-                    # Wait 1 seconds
-                    #self.spritelist.pop(-1)
+                    self.explosionlist.append(Boom(self.ship.center_x, self.ship.center_y, 30))
+                    self.spritelist[0].alpha = 0
+                    self.spritelist.pop()
 
                     self.gameover.gather(
                         str(self.tracker.getscore()), self.inputs, self.db)
