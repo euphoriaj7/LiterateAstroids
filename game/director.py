@@ -132,7 +132,7 @@ class Director(arcade.View):
         else:
             word = ""
         if self.inputs.pressed(symbol, modifer, word) and len(self.asteroidlist) > 0:
-            self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
+            self.spritelist[0].point_to(self.asteroidlist[0].get_pos(), self.asteroidlist[0].get_id())
 
     # Check for key release
 
@@ -141,9 +141,9 @@ class Director(arcade.View):
 
     def on_update(self, delta_time):
         for sprite in self.spritelist:
-            if sprite.update() == True:
-                self.laserlist.append(
-                    Laser(40, self.spritelist[0].get_target_angle()))
+
+            if len(self.asteroidlist) > 0 and sprite.update(self.asteroidlist[0].get_id()) == True:
+                self.laserlist.append(Laser(40, self.spritelist[0].get_target_angle()))
 
         self.asteroidlist.update()
         self.laserlist.update()
