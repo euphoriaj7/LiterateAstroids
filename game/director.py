@@ -1,3 +1,4 @@
+
 #from LiterateAstroids.game.constants import CENTER_X, CENTER_Y
 from pickle import NONE
 import arcade
@@ -36,6 +37,7 @@ class Director(arcade.View):
         self.tracker = Tracker()
         self.gameover = GameOver()
         self.db = DB_Connect()
+        self.boom = Boom()
         self.text = None
         self.spawning = False   # DO NOT CHANGE
         self.spawn_counter = 1  # DO NOT CHANGE
@@ -114,7 +116,7 @@ class Director(arcade.View):
         else:
             word = ""
         if self.inputs.pressed(symbol, modifer, word) and len(self.asteroidlist) > 0:
-            self.spritelist[0].point_to(self.asteroidlist[0].get_pos(), self.asteroidlist[0].get_id())
+            self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
 
     # Check for key release
 
@@ -123,9 +125,9 @@ class Director(arcade.View):
 
     def on_update(self, delta_time):
         for sprite in self.spritelist:
-
-            if len(self.asteroidlist) > 0 and sprite.update(self.asteroidlist[0].get_id()) == True:
-                self.laserlist.append(Laser(40, self.spritelist[0].get_target_angle()))
+            if sprite.update() == True:
+                self.laserlist.append(
+                    Laser(40, self.spritelist[0].get_target_angle()))
 
         self.asteroidlist.update()
         self.laserlist.update()
