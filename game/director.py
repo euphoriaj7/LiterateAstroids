@@ -38,6 +38,16 @@ class Director(arcade.View):
         self.spawning = False   # DO NOT CHANGE
         self.spawn_counter = 1  # DO NOT CHANGE
 
+        #sounds 
+       
+        # like this better for laser
+        self.laser_sound = arcade.load_sound("game\sounds\laser_gun.wav")
+        #sound for end of game explosion
+        self.explosion_sound = arcade.load_sound("game\sounds\ship_explode.wav")
+        # for asteroid hitting ship sound 
+        self.explosion_asteroid_sound = arcade.load_sound("game\sounds\explosion1.wav")
+        
+
         # ASTEROID SPAWN PARAMETERS
         self.spawn_amount = 3
         self.spawn_interval = 100
@@ -143,6 +153,7 @@ class Director(arcade.View):
         for sprite in self.spritelist:
 
             if len(self.asteroidlist) > 0 and sprite.update(self.asteroidlist[0].get_id()) == True:
+                arcade.play_sound(self.laser_sound)
                 self.laserlist.append(Laser(40, self.spritelist[0].get_target_angle()))
 
         self.asteroidlist.update()
@@ -157,6 +168,8 @@ class Director(arcade.View):
         if (len(self.laserlist) > 0 and len(self.asteroidlist) > 0):
             if arcade.check_for_collision(self.asteroidlist[0], self.laserlist[0]):
                 self.explosionlist.append(Boom(self.asteroidlist[0].center_x, self.asteroidlist[0].center_y, 7))
+                #expolode when hits asteroid with laser 
+                arcade.play_sound(self.explosion_sound)
                 self.laserlist.pop(0)
                 self.asteroidlist.pop(0)
                 self.tracker.addscore()
@@ -174,15 +187,21 @@ class Director(arcade.View):
         if len(self.asteroidlist) > 0 and len(self.spritelist) > 0:
             if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
                 self.explosionlist.append(Boom(self.asteroidlist[0].center_x, self.asteroidlist[0].center_y, 7))
+                
                 self.asteroidlist.pop(0)
                 if self.tracker.gethp() > 1:
                     self.tracker.minushp()
+                    arcade.play_sound(self.explosion_asteroid_sound)
                 else:
                     self.tracker.minushp()
                     self.explosionlist.append(Boom(self.ship.center_x, self.ship.center_y, 30))
                     self.spritelist[0].alpha = 0
                     self.spritelist.pop()
                     self.sig_gameover = True
+                    
+                    arcade.play_sound(self.explosion_sound)
+                    # Wait 1 seconds
+                    #self.spritelist.pop(-1)
 
                     # wait 1 second
                     self.wait_dur(100)
