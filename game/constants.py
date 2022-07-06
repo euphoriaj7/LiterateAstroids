@@ -10,8 +10,8 @@ SCREEN_TITLE = 'Literate Astroids'
 CENTER_X = SCREEN_WIDTH / 2
 CENTER_Y = SCREEN_HEIGHT / 2
 SHIP_SCALE = 1
-#FONT = "Times New Roman"
-FONT = "Courier New"
+FONT = "Times New Roman"
+# FONT = "Courier New"
 
 # SPACESHIP CONSTANTS
 SHIP_IDLE = arcade.load_texture(WORKING_DIRECTORY+"/game/images/spaceship.png")
