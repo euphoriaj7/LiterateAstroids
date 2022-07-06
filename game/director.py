@@ -151,16 +151,10 @@ class Director(arcade.View):
 
     def on_update(self, delta_time):
         for sprite in self.spritelist:
-<<<<<<< HEAD
-
-            if len(self.asteroidlist) > 0 and sprite.update(self.asteroidlist[0].get_id()) == True:
-                self.laserlist.append(Laser(40, self.spritelist[0].get_target_angle()))
-=======
             if sprite.update() == True:
                 arcade.play_sound(self.laser_sound)
                 self.laserlist.append(
                     Laser(40, self.spritelist[0].get_target_angle()))
->>>>>>> 8bb0d10ebd2b0814c0b36c4e95f31ed6222f3ba2
 
         self.asteroidlist.update()
         self.laserlist.update()
@@ -173,12 +167,8 @@ class Director(arcade.View):
         # Delete both if there is contact
         if (len(self.laserlist) > 0 and len(self.asteroidlist) > 0):
             if arcade.check_for_collision(self.asteroidlist[0], self.laserlist[0]):
-<<<<<<< HEAD
-                self.explosionlist.append(Boom(self.asteroidlist[0].center_x, self.asteroidlist[0].center_y, 7))
-=======
                 #expolode when hits asteroid with laser 
                 arcade.play_sound(self.explosion_sound)
->>>>>>> 8bb0d10ebd2b0814c0b36c4e95f31ed6222f3ba2
                 self.laserlist.pop(0)
                 self.asteroidlist.pop(0)
                 self.tracker.addscore()
@@ -195,30 +185,19 @@ class Director(arcade.View):
 
         if len(self.asteroidlist) > 0 and len(self.spritelist) > 0:
             if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
-<<<<<<< HEAD
-                self.explosionlist.append(Boom(self.asteroidlist[0].center_x, self.asteroidlist[0].center_y, 7))
-=======
                 
->>>>>>> 8bb0d10ebd2b0814c0b36c4e95f31ed6222f3ba2
                 self.asteroidlist.pop(0)
                 if self.tracker.gethp() > 1:
                     self.tracker.minushp()
                     arcade.play_sound(self.explosion_asteroid_sound)
                 else:
                     self.tracker.minushp()
-<<<<<<< HEAD
-                    self.explosionlist.append(Boom(self.ship.center_x, self.ship.center_y, 30))
-                    self.spritelist[0].alpha = 0
-                    self.spritelist.pop()
-                    self.sig_gameover = True
-=======
                     self.boom.center_y = self.ship.center_y
                     self.boom.center_x = self.ship.center_x
                     self.spritelist.append(self.boom)
                     arcade.play_sound(self.explosion_sound)
                     # Wait 1 seconds
                     #self.spritelist.pop(-1)
->>>>>>> 8bb0d10ebd2b0814c0b36c4e95f31ed6222f3ba2
 
                     # wait 1 second
                     self.wait_dur(100)
