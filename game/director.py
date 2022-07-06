@@ -44,11 +44,11 @@ class Director(arcade.View):
         #sounds 
        
         # like this better for laser
-        self.laser_sound = arcade.load_sound("game\sounds\gameover2.wav")
+        self.laser_sound = arcade.load_sound("game\sounds\laser_gun.wav")
         #sound for end of game explosion
-        self.explosion_sound = arcade.load_sound("game\sounds\explosion1.wav")
+        self.explosion_sound = arcade.load_sound("game\sounds\ship_explode.wav")
         # for asteroid hitting ship sound 
-        self.explosion_asteroid_sound = arcade.load_sound("game\sounds\explosion2.wav")
+        self.explosion_asteroid_sound = arcade.load_sound("game\sounds\explosion1.wav")
         
 
         # ASTEROID SPAWN PARAMETERS
