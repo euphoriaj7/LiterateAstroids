@@ -1,4 +1,4 @@
-from msilib.schema import Font
+#from msilib.schema import Font
 import arcade
 import os
 
