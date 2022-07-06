@@ -168,7 +168,7 @@ class Director(arcade.View):
         if (len(self.laserlist) > 0 and len(self.asteroidlist) > 0):
             if arcade.check_for_collision(self.asteroidlist[0], self.laserlist[0]):
                 #expolode when hits asteroid with laser 
-                arcade.play_sound(self.explosion_sound)
+                arcade.play_sound(self.explosion_asteroid_sound)
                 self.explosionlist.append(Boom(self.asteroidlist[0].center_x, self.asteroidlist[0].center_y, 7))
                 self.laserlist.pop(0)
                 self.asteroidlist.pop(0)
@@ -193,6 +193,7 @@ class Director(arcade.View):
                     self.tracker.minushp()
                     arcade.play_sound(self.explosion_asteroid_sound)
                 else:
+                    arcade.play_sound(self.explosion_sound)
                     self.tracker.minushp()
                     self.explosionlist.append(Boom(self.ship.center_x, self.ship.center_y, 30))
                     self.spritelist[0].alpha = 0
