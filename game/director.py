@@ -1,9 +1,5 @@
 #from LiterateAstroids.game.constants import CENTER_X, CENTER_Y
-from pickle import NONE
 import arcade
-import math
-import random
-import time
 
 from game.constants import (
     SCREEN_WIDTH,
@@ -27,6 +23,7 @@ class Director(arcade.View):
     def __init__(self):
         super().__init__()
         self.spritelist = None
+        self.explosionlist = None
         self.asteroidlist = None
         self.laserlist = None
         self.ship = None
@@ -36,8 +33,8 @@ class Director(arcade.View):
         self.tracker = Tracker()
         self.gameover = GameOver()
         self.db = DB_Connect()
-        self.boom = Boom()
         self.text = None
+        self.sig_gameover = False
         self.spawning = False   # DO NOT CHANGE
         self.spawn_counter = 1  # DO NOT CHANGE
 
@@ -55,12 +52,18 @@ class Director(arcade.View):
         self.spawn_amount = 3
         self.spawn_interval = 100
 
+        # WAIT PARAMETERS
+        self.count = 0
+        self.target = -1
+        self.waiting = False
+
     def setup(self):
         self.background = arcade.load_texture(
             WORKING_DIRECTORY+"/game/images/stars.png")
 
         # creates a sprite list under name spritelist
         self.spritelist = arcade.SpriteList()
+        self.explosionlist = arcade.SpriteList()
         self.asteroidlist = arcade.SpriteList()
         self.laserlist = arcade.SpriteList()
 
@@ -68,6 +71,19 @@ class Director(arcade.View):
         self.inputs = Inputs()
         # adds ship to sprite list /// THIS NEEDS TO BE THE FIRST ITEM ///
         self.spritelist.append(self.ship)
+
+    # WAIT FUNCTION
+    def wait_dur(self, duration):
+        if self.waiting:
+            if self.count <= 0:
+                self.target = duration
+                self.count += 1
+            elif self.count >= self.target:
+                self.waiting = False
+                self.count = 0
+                self.target = -1
+            else: self.count += 1
+        else: self.waiting = True
 
     def on_draw(self):
         arcade.start_render()
@@ -78,6 +94,7 @@ class Director(arcade.View):
         # Updates graphics for all sprites
         self.laserlist.draw()
         self.spritelist.draw()
+        self.explosionlist.draw()
         self.asteroidlist.draw()
         # Makes the first text in the list red, and the rest green
         for i in range(len(self.asteroidlist)):
@@ -125,7 +142,7 @@ class Director(arcade.View):
         else:
             word = ""
         if self.inputs.pressed(symbol, modifer, word) and len(self.asteroidlist) > 0:
-            self.spritelist[0].point_to(self.asteroidlist[0].get_pos())
+            self.spritelist[0].point_to(self.asteroidlist[0].get_pos(), self.asteroidlist[0].get_id())
 
     # Check for key release
 
@@ -134,13 +151,14 @@ class Director(arcade.View):
 
     def on_update(self, delta_time):
         for sprite in self.spritelist:
-            if sprite.update() == True:
+
+            if len(self.asteroidlist) > 0 and sprite.update(self.asteroidlist[0].get_id()) == True:
                 arcade.play_sound(self.laser_sound)
-                self.laserlist.append(
-                    Laser(40, self.spritelist[0].get_target_angle()))
+                self.laserlist.append(Laser(40, self.spritelist[0].get_target_angle()))
 
         self.asteroidlist.update()
         self.laserlist.update()
+        self.explosionlist.update()
 
         # Update keyboard inputs
         self.inputs.update()
@@ -151,6 +169,7 @@ class Director(arcade.View):
             if arcade.check_for_collision(self.asteroidlist[0], self.laserlist[0]):
                 #expolode when hits asteroid with laser 
                 arcade.play_sound(self.explosion_sound)
+                self.explosionlist.append(Boom(self.asteroidlist[0].center_x, self.asteroidlist[0].center_y, 7))
                 self.laserlist.pop(0)
                 self.asteroidlist.pop(0)
                 self.tracker.addscore()
@@ -165,29 +184,31 @@ class Director(arcade.View):
         if self.spawn_counter < 2: self.spawning = False
 
 
-        if len(self.asteroidlist) > 0 and len(self.asteroidlist) > 0:
+        if len(self.asteroidlist) > 0 and len(self.spritelist) > 0:
             if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
                 
+                self.explosionlist.append(Boom(self.asteroidlist[0].center_x, self.asteroidlist[0].center_y, 7))
                 self.asteroidlist.pop(0)
                 if self.tracker.gethp() > 1:
                     self.tracker.minushp()
                     arcade.play_sound(self.explosion_asteroid_sound)
                 else:
                     self.tracker.minushp()
-                    self.boom.center_y = self.ship.center_y
-                    self.boom.center_x = self.ship.center_x
-                    self.spritelist.append(self.boom)
-                    arcade.play_sound(self.explosion_sound)
-                    # Wait 1 seconds
-                    #self.spritelist.pop(-1)
+                    self.explosionlist.append(Boom(self.ship.center_x, self.ship.center_y, 30))
+                    self.spritelist[0].alpha = 0
+                    self.spritelist.pop()
+                    self.sig_gameover = True
 
-                    self.gameover.gather(
-                        str(self.tracker.getscore()), self.inputs, self.db)
-                    self.window.show_view(self.gameover)
+                    # wait 1 second
+                    self.wait_dur(100)
+
+        if self.waiting == True: self.wait_dur(100) # continue waiting
+        else:
+            if self.sig_gameover == True:
+                self.gameover.gather(
+                    str(self.tracker.getscore()), self.inputs, self.db)
+                self.window.show_view(self.gameover)
                     
-
-
-
         for laser in self.laserlist:
             if laser.get_pos()[0] > SCREEN_WIDTH or laser.get_pos()[0] < 0:
                 laser.remove_from_sprite_lists()
