@@ -21,6 +21,8 @@ class GameOver(arcade.View):
         self.inputs = inputs
         self.db = db
         self.db.initialize_firestore()
+        self.highscores = self.db.get_top_five()
+        
         
     def on_show(self):
         arcade.set_background_color(arcade.color.BEIGE)
@@ -46,15 +48,15 @@ class GameOver(arcade.View):
         # Top Scores
         arcade.draw_text("High Scores", SCREEN_WIDTH / 4,
                          SCREEN_HEIGHT / 2, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
-        arcade.draw_text("Name1: Score1: ", SCREEN_WIDTH / 4,
+        arcade.draw_text(self.highscores["name1"]+": "+str(self.highscores["score1"]), SCREEN_WIDTH / 4,
                          SCREEN_HEIGHT / 2 - 50, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
-        arcade.draw_text("Name2: Score2: ", SCREEN_WIDTH / 4,
+        arcade.draw_text(self.highscores["name2"]+": "+str(self.highscores["score2"]), SCREEN_WIDTH / 4,
                          SCREEN_HEIGHT / 2 - 50 * 2, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
-        arcade.draw_text("Name3: Score3: ", SCREEN_WIDTH / 4,
+        arcade.draw_text(self.highscores["name3"]+": "+str(self.highscores["score3"]), SCREEN_WIDTH / 4,
                          SCREEN_HEIGHT / 2 - 50 * 3, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
-        arcade.draw_text("Name4: Score4: ", SCREEN_WIDTH / 4,
+        arcade.draw_text(self.highscores["name4"]+": "+str(self.highscores["score4"]), SCREEN_WIDTH / 4,
                          SCREEN_HEIGHT / 2 - 50 * 4, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
-        arcade.draw_text("Name5: Score5: ", SCREEN_WIDTH / 4,
+        arcade.draw_text(self.highscores["name5"]+": "+str(self.highscores["score5"]), SCREEN_WIDTH / 4,
                          SCREEN_HEIGHT / 2 - 50 * 5, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
         
     

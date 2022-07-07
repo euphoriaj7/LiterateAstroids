@@ -217,7 +217,7 @@ class Director(arcade.View):
         else:
             if self.sig_gameover == True:
                 self.gameover.gather(
-                    str(self.tracker.getscore()), self.inputs, self.db)
+                    str(self.tracker.getscore()), self.inputs, self.db,)
                 self.window.show_view(self.gameover)
                     
         for laser in self.laserlist:
