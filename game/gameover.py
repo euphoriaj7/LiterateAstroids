@@ -34,16 +34,29 @@ class GameOver(arcade.View):
 
         arcade.draw_text("Literate Astroids", SCREEN_WIDTH / 2,
                          SCREEN_HEIGHT - SCREEN_HEIGHT / 6, arcade.color.WHITE, 50, anchor_x="center", font_name=(FONT,))
+        # User Score and Name Entry
         arcade.draw_text("Final Score: "+ str(self.fscore), SCREEN_WIDTH /
                          2, SCREEN_HEIGHT - SCREEN_HEIGHT / 3, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
-        arcade.draw_text("High Scores", SCREEN_WIDTH / 4,
-                         SCREEN_HEIGHT / 2, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
-        arcade.draw_text("Enter your Username", SCREEN_WIDTH - SCREEN_WIDTH / 4,
+        arcade.draw_text("Enter your Name", SCREEN_WIDTH - SCREEN_WIDTH / 4,
                     SCREEN_HEIGHT / 2, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
         arcade.draw_text("-> " + str(self.inputs.get_input()), SCREEN_WIDTH / 1.8,
-                    SCREEN_HEIGHT / 2 - 40, arcade.color.WHITE, 40, font_name=(FONT,))
+                    SCREEN_HEIGHT / 2 - 50, arcade.color.WHITE, 40, font_name=(FONT,))
         arcade.draw_text(self.result, SCREEN_WIDTH / 2,
                     SCREEN_HEIGHT / 4, arcade.color.WHITE, 40, font_name=(FONT,))
+        # Top Scores
+        arcade.draw_text("High Scores", SCREEN_WIDTH / 4,
+                         SCREEN_HEIGHT / 2, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
+        arcade.draw_text("Name1: Score1: ", SCREEN_WIDTH / 4,
+                         SCREEN_HEIGHT / 2 - 50, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
+        arcade.draw_text("Name2: Score2: ", SCREEN_WIDTH / 4,
+                         SCREEN_HEIGHT / 2 - 50 * 2, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
+        arcade.draw_text("Name3: Score3: ", SCREEN_WIDTH / 4,
+                         SCREEN_HEIGHT / 2 - 50 * 3, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
+        arcade.draw_text("Name4: Score4: ", SCREEN_WIDTH / 4,
+                         SCREEN_HEIGHT / 2 - 50 * 4, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
+        arcade.draw_text("Name5: Score5: ", SCREEN_WIDTH / 4,
+                         SCREEN_HEIGHT / 2 - 50 * 5, arcade.color.WHITE, 40, anchor_x="center", font_name=(FONT,))
+        
     
     
     def on_key_press(self, symbol, modifer):

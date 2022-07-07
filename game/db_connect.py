@@ -46,9 +46,10 @@ class DB_Connect():
             else:
                 return 'Eh...not your best score...'
         else:
+            # Build a dictionary to hold the contents of the firestore document.
+            data = {"name" : name, 
+                "score" : str(score)}
+            self.db.collection("literateAstroids").document(name).set(data)
             return "Great First Score!"
 
-        # Build a dictionary to hold the contents of the firestore document.
-        data = {"name" : name, 
-                "score" : str(score)}
-        self.db.collection("literateAstroids").document(name).set(data)
+        
