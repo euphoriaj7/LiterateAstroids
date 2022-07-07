@@ -41,29 +41,37 @@ class Director(arcade.View):
         #sounds 
        
         # like this better for laser
-        self.laser_sound = arcade.load_sound("game\sounds\laser_gun.wav")
+        self.laser_sound = None
         #sound for end of game explosion
-        self.explosion_sound = arcade.load_sound("game\sounds\ship_explode.wav")
+        self.explosion_sound = None
         # for asteroid hitting ship sound 
-        self.explosion_asteroid_sound = arcade.load_sound("game\sounds\explosion1.wav")
+        self.explosion_asteroid_sound = None
         
 
         # ASTEROID SPAWN PARAMETERS
         self.spawn_amount = 3
         self.spawn_interval = 100
+        self.asteroid_speed = 20
 
         # WAIT PARAMETERS
         self.count = 0
         self.target = -1
         self.waiting = False
         # Background music
-        self.sound_song = arcade.load_sound(":resources:music/1918.mp3")
+        self.sound_song = None
 
     def setup(self):
         self.background = arcade.load_texture(
             WORKING_DIRECTORY+"/game/images/stars.png")
 
-        # Plays background music
+        # Inintialize sound effects
+        self.laser_sound = arcade.load_sound("game\sounds\laser_gun.wav")
+        self.explosion_sound = arcade.load_sound("game\sounds\ship_explode.wav")
+        self.explosion_asteroid_sound = arcade.load_sound("game\sounds\explosion1.wav")
+
+        # Initialize backgound music
+        #self.sound_song = arcade.load_sound(":resources:music/1918.mp3")
+        self.sound_song = arcade.load_sound("game\sounds\BGM-1.mp3")
         arcade.play_sound(self.sound_song)
 
         # creates a sprite list under name spritelist
