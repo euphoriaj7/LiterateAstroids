@@ -39,12 +39,13 @@ class DB_Connect():
 
             # Update the dictionary with the new quanity and then save the 
             # updated dictionary to Firestore.
-            if data['score'] < str(score):
-                data["score"] = str(score)
+            if data['score'] < int(score):
+                data["score"] = int(score)
                 self.db.collection("literateAstroids").document(name).set(data)
                 return 'New High Score!'
             else:
                 return 'Eh...not your best score...'
+
         else:
             # Build a dictionary to hold the contents of the firestore document.
             data = {"name" : name, 
@@ -52,4 +53,40 @@ class DB_Connect():
             self.db.collection("literateAstroids").document(name).set(data)
             return "Great First Score!"
 
+
+
+    def get_top_five(self):
+            # The document ID must be unique in Firestore.
+        results = self.db.collection("literateAstroids").get()
+        # Convert data read from the firestore document to a dictionary
+        list_scores = []
+
+        #data = result.to_dict()
+        for result in results:
+            row = result.to_dict()
+            print(row)
+            list_scores.append(row)
+        newlist = sorted(list_scores, key=lambda d: d['score']) 
+
+        topFive = []
+        for i in range(5):
+            score = newlist.pop()
+            topFive.append(score)
+
+        topfive = dict()
+        j = 0
+        for i in topFive:
+            j += 1
+            for key, value in i.items():
+                
+                print (key, value)
+                if key == 'name':
+                    newKeyName = 'name' + str(j)
+                    topfive[newKeyName] = value
+                    
+                else:
+                    newKeyScore = 'score' + str(j)
+                    topfive[newKeyScore] = value
+
+        return topfive
         
