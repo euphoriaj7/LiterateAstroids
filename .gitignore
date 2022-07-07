@@ -11,3 +11,5 @@ game/literateastroids-firebase-adminsdk-2y0ix-ed3689b496.json
 __pycache__/
 
 game/literateastroids-firebase-adminsdk-2y0ix-ed3689b496.json
+game/miniMain.py
+game/test_top_five.py
