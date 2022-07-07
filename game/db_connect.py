@@ -49,7 +49,7 @@ class DB_Connect():
         else:
             # Build a dictionary to hold the contents of the firestore document.
             data = {"name" : name, 
-                "score" : str(score)}
+                "score" : int(score)}
             self.db.collection("literateAstroids").document(name).set(data)
             return "Great First Score!"
 
@@ -66,7 +66,7 @@ class DB_Connect():
             row = result.to_dict()
             print(row)
             list_scores.append(row)
-        newlist = sorted(list_scores, key=lambda d: d['score']) 
+        newlist = sorted(list_scores, key=lambda d: int(d['score'])) 
 
         topFive = []
         for i in range(5):
@@ -78,7 +78,6 @@ class DB_Connect():
         for i in topFive:
             j += 1
             for key, value in i.items():
-                
                 if key == 'name':
                     newKeyName = 'name' + str(j)
                     topfive[newKeyName] = value
