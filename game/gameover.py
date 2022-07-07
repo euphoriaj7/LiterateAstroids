@@ -24,6 +24,7 @@ class GameOver(arcade.View):
         self.highscores = self.db.get_top_five()
         
         
+        
     def on_show(self):
         arcade.set_background_color(arcade.color.BEIGE)
         self.end = arcade.load_texture(
@@ -68,6 +69,7 @@ class GameOver(arcade.View):
                 self.result = str(self.db.add_new_score(self.inputs.get_input(), self.fscore))
                 #stop player from doing more input?   
                 self.enter_name = False
+                self.highscores = self.db.get_top_five()
                 
 
     def on_key_release(self, symbol, modifier): self.inputs.released(
