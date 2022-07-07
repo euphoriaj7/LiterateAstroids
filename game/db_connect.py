@@ -64,7 +64,6 @@ class DB_Connect():
         #data = result.to_dict()
         for result in results:
             row = result.to_dict()
-            print(row)
             list_scores.append(row)
         newlist = sorted(list_scores, key=lambda d: int(d['score'])) 
 
@@ -85,6 +84,6 @@ class DB_Connect():
                 else:
                     newKeyScore = 'score' + str(j)
                     topfive[newKeyScore] = value
-        print(topfive)
+        
         return topfive
         
