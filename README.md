@@ -38,7 +38,7 @@ Morale Officer - Bekah Bentley
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Python Arcade Official Documentation](https://api.arcade.academy/en/latest/get_started.html#)
 * [More Python Arcade Documentation](https://realpython.com/arcade-python-game-framework/)
-* [Firebase - Cloud Database] (https://firebase.google.com/)
+* [Firebase - Cloud Database](https://firebase.google.com/)
 
 # Future Work
 
