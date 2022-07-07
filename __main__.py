@@ -5,7 +5,6 @@ from game.constants import (
     SCREEN_HEIGHT,
     SCREEN_TITLE
 )
-
 if __name__ == '__main__':
     window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     menu_view = MenuView()

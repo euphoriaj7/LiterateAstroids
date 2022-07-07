@@ -25,12 +25,13 @@ class Ship(arcade.Sprite):
         self.target_angle = 0
         self.delta_angle = 0
 
+        self.shot_id = -1 # used to validate if the shot from the laser is aiming at the right asteroid
+
     def get_target_angle(self): return self.target_angle
 
-    def point_to(self, pos):
+    def point_to(self, pos, shot_id):
         self.start_angle = self.angle
-        self.target_angle = (
-            (math.atan2(pos[1] - CENTER_Y, pos[0] - CENTER_X) - math.pi/2) * 180/math.pi)
+        self.target_angle = ((math.atan2(pos[1] - CENTER_Y, pos[0] - CENTER_X) - math.pi/2) * 180/math.pi)
 
         if self.target_angle > 180:
             self.target_angle -= 360
@@ -45,17 +46,21 @@ class Ship(arcade.Sprite):
         if self.delta_angle < -180:
             self.delta_angle += 360
 
-    def update(self):
+        # set shot id to top asteroid's id
+        self.shot_id = shot_id
+
+    def update(self, top_id):
         super().update()
 
         if self.rotation_tick <= self.rotation_time:
             self.rotation_tick += 1
-            self.angle = (self.start_angle + ((self.delta_angle/2) * math.sin(
-                ((math.pi/self.rotation_time)*self.rotation_tick)-(math.pi/2))) + (self.delta_angle/2))
+            self.angle = (self.start_angle + ((self.delta_angle/2) * math.sin(((math.pi/self.rotation_time)*self.rotation_tick)-(math.pi/2))) + (self.delta_angle/2))
 
         if self.rotation_tick == self.rotation_time+1:
             self.rotation_tick += 1
             self.angle = self.target_angle
-            return True
+
+            # Check if asteroid ID matches
+            if top_id == self.shot_id: return True
 
         return False
