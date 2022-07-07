@@ -56,10 +56,15 @@ class Director(arcade.View):
         self.count = 0
         self.target = -1
         self.waiting = False
+        # Background music
+        self.sound_song = arcade.load_sound(":resources:music/1918.mp3")
 
     def setup(self):
         self.background = arcade.load_texture(
             WORKING_DIRECTORY+"/game/images/stars.png")
+
+        # Plays background music
+        arcade.play_sound(self.sound_song)
 
         # creates a sprite list under name spritelist
         self.spritelist = arcade.SpriteList()
@@ -179,10 +184,12 @@ class Director(arcade.View):
             self.spawning = True
             self.spawn_counter = self.spawn_interval * self.spawn_amount
         if self.spawn_counter % self.spawn_interval == 0:
-            self.asteroidlist.append(Astroid(2, self.data.random_word(self.tracker.getscore())))
-        if self.spawn_counter >= 2:  self.spawn_counter -= 1
-        if self.spawn_counter < 2: self.spawning = False
-
+            self.asteroidlist.append(
+                Astroid(2, self.data.random_word(self.tracker.getscore())))
+        if self.spawn_counter >= 2:
+            self.spawn_counter -= 1
+        if self.spawn_counter < 2:
+            self.spawning = False
 
         if len(self.asteroidlist) > 0 and len(self.spritelist) > 0:
             if arcade.check_for_collision(self.asteroidlist[0], self.spritelist[0]):
@@ -201,7 +208,7 @@ class Director(arcade.View):
                     
                     arcade.play_sound(self.explosion_sound)
                     # Wait 1 seconds
-                    #self.spritelist.pop(-1)
+                    # self.spritelist.pop(-1)
 
                     # wait 1 second
                     self.wait_dur(100)
