@@ -79,7 +79,6 @@ class DB_Connect():
             j += 1
             for key, value in i.items():
                 
-                print (key, value)
                 if key == 'name':
                     newKeyName = 'name' + str(j)
                     topfive[newKeyName] = value
@@ -87,6 +86,6 @@ class DB_Connect():
                 else:
                     newKeyScore = 'score' + str(j)
                     topfive[newKeyScore] = value
-
+        print(topfive)
         return topfive
         
