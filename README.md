@@ -7,7 +7,6 @@
  This game is designed to help students learn to type better by making it fun. We have integrated the process of learning to type with a game of astroids. 
 
 Once a player types the correct letter displayed in the astroid, the ship will shoot a laser at the astroid to destroy it. 
-(Talk a little bit more about what the game does. i.e. what it takes to win the game)
 
 [Software Demo Video](http://youtube.link.goes.here)
 
@@ -17,6 +16,7 @@ Once a player types the correct letter displayed in the astroid, the ship will s
  - Visual Studio Code
  - Modules/Libraries used: 
     arcade
+    firebase admin
 
 # Collaborators
 
@@ -43,6 +43,6 @@ Morale Officer - Bekah Bentley
 # Future Work
 
 {Make a list of things that you need to fix, improve, and add in the future.}
-* Item 1
-* Item 2
-* Item 3
+* get a word list that would have a more fluid difficulty scale along with writing an algorithm for that scale
+* Words per minute tracking 
+* accounts for users to sign into
