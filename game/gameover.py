@@ -16,11 +16,25 @@ class GameOver(arcade.View):
         self.fscore = None
         self.result = ""
 
+
     def gather(self, score, inputs, db):
+        """
+        Gather information for scores and scoreboard
+        """
+
+        #assign score to member variable for display and add to database
         self.fscore = score
+
+        #assign user's name to member variable for display and add to database
         self.inputs = inputs
+
+        #assign database to variable
         self.db = db
+
+        #Connect to database
         self.db.initialize_firestore()
+
+        #get the top five scores from the database
         self.highscores = self.db.get_top_five()
         
         

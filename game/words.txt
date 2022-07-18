@@ -226,13 +226,13 @@ Need
 Stay
 Come
 One
-Two 
+Two
 Three
-Four 
+Four
 Five
 Six
-Seven 
-Eight 
+Seven
+Eight
 Nine
 Ten
 1
