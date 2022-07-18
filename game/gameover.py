@@ -66,8 +66,7 @@ class GameOver(arcade.View):
         if self.enter_name == True:
             self.inputs.pressed(symbol, modifer, '')
             if symbol == arcade.key.ENTER:
-                self.result = str(self.db.add_new_score(self.inputs.get_input(), self.fscore))
-                #stop player from doing more input?   
+                self.result = str(self.db.add_new_score(self.inputs.get_input(), self.fscore))  
                 self.enter_name = False
                 self.highscores = self.db.get_top_five()
                 
